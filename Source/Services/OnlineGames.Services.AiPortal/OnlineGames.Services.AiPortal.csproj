@@ -61,6 +61,7 @@
     <Compile Include="IRemoteDataService.cs" />
     <Compile Include="Models\CheckUserLoginApiModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RemoteDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\OnlineGames.Data.Common\OnlineGames.Data.Common.csproj">
