@@ -59,6 +59,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AiPortalDbContext.cs" />
+    <Compile Include="Migrations\201510191654562_InitialCreate.cs" />
+    <Compile Include="Migrations\201510191654562_InitialCreate.Designer.cs">
+      <DependentUpon>201510191654562_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +75,11 @@
       <Project>{fbdd7094-1c20-43d5-9882-252aededb7fa}</Project>
       <Name>OnlineGames.Data.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201510191654562_InitialCreate.resx">
+      <DependentUpon>201510191654562_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

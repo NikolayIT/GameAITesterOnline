@@ -1,5 +1,7 @@
 ﻿namespace OnlineGames.Data
 {
+    using System.Data.Entity;
+
     using Microsoft.AspNet.Identity.EntityFramework;
 
     using OnlineGames.Data.Models;
