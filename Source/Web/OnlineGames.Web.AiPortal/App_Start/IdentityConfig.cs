@@ -14,6 +14,9 @@ using OnlineGames.Web.AiPortal.Models;
 
 namespace OnlineGames.Web.AiPortal
 {
+    using OnlineGames.Data;
+    using OnlineGames.Data.Models;
+
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)

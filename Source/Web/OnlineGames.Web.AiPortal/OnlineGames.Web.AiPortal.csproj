@@ -166,7 +166,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -238,6 +237,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\OnlineGames.Data.Models\OnlineGames.Data.Models.csproj">
+      <Project>{fbdd7094-1c20-43d5-9882-252aededb7fa}</Project>
+      <Name>OnlineGames.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\OnlineGames.Data\OnlineGames.Data.csproj">
+      <Project>{e76453f3-4901-4294-a57f-cb2e78e04e05}</Project>
+      <Name>OnlineGames.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

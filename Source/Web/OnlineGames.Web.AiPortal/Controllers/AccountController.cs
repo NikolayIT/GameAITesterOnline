@@ -12,6 +12,8 @@ using OnlineGames.Web.AiPortal.Models;
 
 namespace OnlineGames.Web.AiPortal.Controllers
 {
+    using OnlineGames.Data.Models;
+
     [Authorize]
     public class AccountController : Controller
     {
