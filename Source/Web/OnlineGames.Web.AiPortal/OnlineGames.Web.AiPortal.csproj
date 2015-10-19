@@ -241,6 +241,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\OnlineGames.Data.Common\OnlineGames.Data.Common.csproj">
+      <Project>{a4379059-f6ba-4e0d-b88d-b8e8c5d8eef1}</Project>
+      <Name>OnlineGames.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\OnlineGames.Data.Models\OnlineGames.Data.Models.csproj">
       <Project>{fbdd7094-1c20-43d5-9882-252aededb7fa}</Project>
       <Name>OnlineGames.Data.Models</Name>

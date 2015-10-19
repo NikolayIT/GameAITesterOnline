@@ -2,16 +2,21 @@
 {
     using System.Collections.Generic;
 
-    public class Team
+    using OnlineGames.Data.Common.Models;
+
+    public class Team : BaseModel<int>
     {
-        public int Id { get; set; }
+        public Team()
+        {
+            this.TeamMembers = new HashSet<TeamMember>();
+        }
 
         public string Name { get; set; }
 
-        public ICollection<TeamMember> TeamMembers { get; set; }
-    }
+        public string CreatedById { get; set; }
 
-    public class TeamMember
-    {
+        public ApplicationUser CreatedBy { get; set; }
+
+        public virtual ICollection<TeamMember> TeamMembers { get; set; }
     }
 }

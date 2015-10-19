@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineGames.Data.Models", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineGames.Data", "Data\OnlineGames.Data\OnlineGames.Data.csproj", "{E76453F3-4901-4294-A57F-CB2E78E04E05}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineGames.Data.Common", "Data\OnlineGames.Data.Common\OnlineGames.Data.Common.csproj", "{A4379059-F6BA-4E0D-B88D-B8E8C5D8EEF1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{E76453F3-4901-4294-A57F-CB2E78E04E05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E76453F3-4901-4294-A57F-CB2E78E04E05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E76453F3-4901-4294-A57F-CB2E78E04E05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4379059-F6BA-4E0D-B88D-B8E8C5D8EEF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4379059-F6BA-4E0D-B88D-B8E8C5D8EEF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4379059-F6BA-4E0D-B88D-B8E8C5D8EEF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4379059-F6BA-4E0D-B88D-B8E8C5D8EEF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,5 +45,6 @@ Global
 		{5F79BED0-3B93-4199-BD3A-5752052A7AD9} = {ADB3674E-291D-42C9-B8C7-097D1FF6D63F}
 		{FBDD7094-1C20-43D5-9882-252AEDEDB7FA} = {CC7A7E25-643A-4FA3-95EB-7988A4937A86}
 		{E76453F3-4901-4294-A57F-CB2E78E04E05} = {CC7A7E25-643A-4FA3-95EB-7988A4937A86}
+		{A4379059-F6BA-4E0D-B88D-B8E8C5D8EEF1} = {CC7A7E25-643A-4FA3-95EB-7988A4937A86}
 	EndGlobalSection
 EndGlobal
