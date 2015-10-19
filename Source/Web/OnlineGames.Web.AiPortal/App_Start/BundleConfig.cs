@@ -19,6 +19,7 @@ namespace OnlineGames.Web.AiPortal
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/Darkly/bootstrap.css",
                       "~/Content/site.css"));
         }
     }

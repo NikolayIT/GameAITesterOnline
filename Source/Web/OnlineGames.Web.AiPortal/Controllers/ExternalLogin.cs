@@ -2,9 +2,10 @@
 {
     using System.Web.Mvc;
 
-    public class HomeController : Controller
+    public class ExternalLoginController : Controller
     {
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult LoginWithTelerikAcademy()
         {
             return this.View();
         }
