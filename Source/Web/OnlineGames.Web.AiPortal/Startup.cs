@@ -8,7 +8,6 @@ namespace OnlineGames.Web.AiPortal
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
         }
     }
 }

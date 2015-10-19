@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-
-namespace OnlineGames.Web.AiPortal
+﻿namespace OnlineGames.Web.AiPortal
 {
-    public class RouteConfig
+    using System.Web.Mvc;
+    using System.Web.Routing;
+
+    public static class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)
         {

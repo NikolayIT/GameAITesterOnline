@@ -43,10 +43,6 @@
       <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -59,13 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AiPortalDbContext.cs" />
-    <Compile Include="Migrations\201510191654562_InitialCreate.cs" />
-    <Compile Include="Migrations\201510191654562_InitialCreate.Designer.cs">
-      <DependentUpon>201510191654562_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510191726186_AddTeamsAndTeamMembers.cs" />
-    <Compile Include="Migrations\201510191726186_AddTeamsAndTeamMembers.Designer.cs">
-      <DependentUpon>201510191726186_AddTeamsAndTeamMembers.cs</DependentUpon>
+    <Compile Include="Migrations\201510191820560_InitialCreate.cs" />
+    <Compile Include="Migrations\201510191820560_InitialCreate.Designer.cs">
+      <DependentUpon>201510191820560_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,6 +67,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\OnlineGames.Common\OnlineGames.Common.csproj">
+      <Project>{8E6474C8-D25F-41B1-A7DE-4AC2F73C7D91}</Project>
+      <Name>OnlineGames.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OnlineGames.Data.Common\OnlineGames.Data.Common.csproj">
       <Project>{a4379059-f6ba-4e0d-b88d-b8e8c5d8eef1}</Project>
       <Name>OnlineGames.Data.Common</Name>
@@ -85,11 +81,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510191654562_InitialCreate.resx">
-      <DependentUpon>201510191654562_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510191726186_AddTeamsAndTeamMembers.resx">
-      <DependentUpon>201510191726186_AddTeamsAndTeamMembers.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510191820560_InitialCreate.resx">
+      <DependentUpon>201510191820560_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

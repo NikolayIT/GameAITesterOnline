@@ -1,31 +1,32 @@
 namespace OnlineGames.Data.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<OnlineGames.Data.AiPortalDbContext>
+    using OnlineGames.Common;
+    using OnlineGames.Data.Models;
+
+    internal sealed class Configuration : DbMigrationsConfiguration<AiPortalDbContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            this.AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(OnlineGames.Data.AiPortalDbContext context)
+        protected override void Seed(AiPortalDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            if (!context.Roles.Any())
+            {
+                this.SeedRoles(context);
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+                context.SaveChanges();
+            }
+        }
+
+        private void SeedRoles(AiPortalDbContext context)
+        {
+            var role = new Role { Name = GlobalConstants.AdministratorRoleName };
+            context.Roles.Add(role);
         }
     }
 }

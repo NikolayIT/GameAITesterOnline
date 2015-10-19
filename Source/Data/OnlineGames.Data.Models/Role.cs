@@ -4,15 +4,15 @@
 
     using OnlineGames.Data.Common.Models;
 
-    public class Team : BaseModel<int>
+    public class Role : BaseModel<int>
     {
-        public Team()
+        public Role()
         {
-            this.TeamMembers = new HashSet<TeamMember>();
+            this.Users = new HashSet<User>();
         }
 
         public string Name { get; set; }
 
-        public virtual ICollection<TeamMember> TeamMembers { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }
