@@ -1,4 +1,4 @@
-namespace OnlineGames.Data.Migrations
+﻿namespace OnlineGames.Data.Migrations
 {
     using System.Data.Entity.Migrations;
 

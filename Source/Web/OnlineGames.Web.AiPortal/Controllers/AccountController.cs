@@ -22,12 +22,6 @@
         private readonly IDbRepository<User> usersRepository;
         private readonly IDbRepository<Role> rolesRepository;
 
-        // TODO: Replace with Ninject
-        public AccountController()
-            : this(new DbRepository<User>(new AiPortalDbContext()), new DbRepository<Role>(new AiPortalDbContext()))
-        {
-        }
-
         public AccountController(IDbRepository<User> usersRepository, IDbRepository<Role> rolesRepository)
         {
             this.usersRepository = usersRepository;
