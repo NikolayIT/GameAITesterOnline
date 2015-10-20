@@ -78,8 +78,7 @@
 
             var roles = dbUser.Roles.Select(x => x.Name).ToList();
             var userDataObject = new AiPortalUserData(dbUser.UserName, roles);
-
-            // TODO: Roles
+            
             var userDataAsString = JsonConvert.SerializeObject(userDataObject);
             var authTicket = new FormsAuthenticationTicket(
                 1,

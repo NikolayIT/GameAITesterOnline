@@ -9,7 +9,14 @@
             <p class="lead">Try your algoritmic skills.</p>
         </div>
         <div class="col-md-4">
-            <a class="btn btn-info" href="/Account/LoginWithTelerikAcademy">Login with telerikacademy.com &raquo;</a>
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <a class="btn btn-info" href="/Account/LoginWithTelerikAcademy">Login with telerikacademy.com &raquo;</a>
+            }
+            else
+            {
+                <a class="btn btn-info" href="/Teams/Create">Create a new team &raquo;</a>
+            }
         </div>
     </div>
 </div>
