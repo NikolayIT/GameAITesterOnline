@@ -1,7 +1,7 @@
 namespace OnlineGames.Data.Migrations
 {
     using System.Data.Entity.Migrations;
-    
+
     public partial class InitialCreate : DbMigration
     {
         public override void Up()
@@ -83,9 +83,8 @@ namespace OnlineGames.Data.Migrations
                 .ForeignKey("dbo.Roles", t => t.Role_Id, cascadeDelete: true)
                 .Index(t => t.User_Id)
                 .Index(t => t.Role_Id);
-            
         }
-        
+
         public override void Down()
         {
             this.DropForeignKey("dbo.TeamMembers", "UserId", "dbo.Users");

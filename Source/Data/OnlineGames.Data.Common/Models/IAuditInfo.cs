@@ -1,4 +1,4 @@
-namespace OnlineGames.Data.Common.Models
+﻿namespace OnlineGames.Data.Common.Models
 {
     using System;
 

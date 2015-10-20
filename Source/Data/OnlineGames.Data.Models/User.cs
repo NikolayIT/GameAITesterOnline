@@ -19,7 +19,7 @@
         public string AvatarUrl { get; set; }
 
         public string Salt { get; set; }
-        
+
         public string PasswordHash { get; set; }
 
         public UserProvider Provider { get; set; }

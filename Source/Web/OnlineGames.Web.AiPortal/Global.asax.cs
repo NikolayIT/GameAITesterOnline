@@ -10,6 +10,7 @@
 
     using OnlineGames.Web.AiPortal.Infrastructure;
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:File name must match first type name", Justification = "File name must be Global.asax.cs")]
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()

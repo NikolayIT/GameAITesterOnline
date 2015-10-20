@@ -52,7 +52,7 @@
             var remoteResult = await new RemoteDataService().Login(model.UserName, model.Password);
             if (remoteResult == null || !remoteResult.IsValid)
             {
-                this.ModelState.AddModelError("", "Invalid login attempt.");
+                this.ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                 return this.View(model);
             }
 
@@ -78,7 +78,7 @@
 
             var roles = dbUser.Roles.Select(x => x.Name).ToList();
             var userDataObject = new AiPortalUserData(dbUser.UserName, roles);
-            
+
             var userDataAsString = JsonConvert.SerializeObject(userDataObject);
             var authTicket = new FormsAuthenticationTicket(
                 1,

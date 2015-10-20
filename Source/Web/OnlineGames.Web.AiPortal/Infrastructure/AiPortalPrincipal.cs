@@ -13,11 +13,11 @@
             this.Identity = new GenericIdentity(userName);
         }
 
+        public IIdentity Identity { get; }
+
         public bool IsInRole(string role)
         {
             return this.roles.Contains(role);
         }
-
-        public IIdentity Identity { get; }
     }
 }

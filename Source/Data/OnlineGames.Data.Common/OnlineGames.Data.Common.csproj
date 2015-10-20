@@ -54,9 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbRepository.cs" />
-    <Compile Include="IDbRepository.cs" />
-    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="DbRepository{T}.cs" />
+    <Compile Include="IDbRepository{T}.cs" />
+    <Compile Include="Models\BaseModel{TKey}.cs" />
     <Compile Include="Models\IAuditInfo.cs" />
     <Compile Include="Models\IDeletableEntity.cs" />
     <Compile Include="Models\IOrderable.cs" />

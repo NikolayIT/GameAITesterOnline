@@ -1,4 +1,4 @@
-namespace OnlineGames.Services.AiPortal
+﻿namespace OnlineGames.Services.AiPortal
 {
     using System;
     using System.Net.Http;

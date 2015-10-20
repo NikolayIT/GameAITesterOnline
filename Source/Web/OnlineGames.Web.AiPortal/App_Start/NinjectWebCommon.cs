@@ -1,7 +1,8 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(OnlineGames.Web.AiPortal.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(OnlineGames.Web.AiPortal.App_Start.NinjectWebCommon), "Stop")]
+﻿using OnlineGames.Web.AiPortal;
 
-namespace OnlineGames.Web.AiPortal.App_Start
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
+namespace OnlineGames.Web.AiPortal
 {
     using System;
     using System.Data.Entity;
@@ -15,28 +16,28 @@ namespace OnlineGames.Web.AiPortal.App_Start
     using OnlineGames.Data;
     using OnlineGames.Data.Common;
 
-    public static class NinjectWebCommon 
+    public static class NinjectWebCommon
     {
-        private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+        private static readonly Bootstrapper Bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-            bootstrapper.Initialize(CreateKernel);
+            Bootstrapper.Initialize(CreateKernel);
         }
-        
+
         /// <summary>
         /// Stops the application.
         /// </summary>
         public static void Stop()
         {
-            bootstrapper.ShutDown();
+            Bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -67,6 +68,6 @@ namespace OnlineGames.Web.AiPortal.App_Start
         {
             kernel.Bind<DbContext>().To<AiPortalDbContext>().InRequestScope();
             kernel.Bind(typeof(IDbRepository<>)).To(typeof(DbRepository<>));
-        }        
+        }
     }
 }
