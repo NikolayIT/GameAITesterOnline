@@ -10,12 +10,11 @@
     using Newtonsoft.Json;
 
     using OnlineGames.Common;
-    using OnlineGames.Data;
     using OnlineGames.Data.Common;
     using OnlineGames.Data.Models;
     using OnlineGames.Services.AiPortal;
     using OnlineGames.Web.AiPortal.Infrastructure;
-    using OnlineGames.Web.AiPortal.ViewModels.ExternalLogin;
+    using OnlineGames.Web.AiPortal.ViewModels.Account;
 
     public class AccountController : Controller
     {

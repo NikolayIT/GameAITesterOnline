@@ -14,5 +14,9 @@
         public string Name { get; set; }
 
         public virtual ICollection<TeamMember> TeamMembers { get; set; }
+
+        public int CompetitionId { get; set; }
+
+        public virtual Competition Competition { get; set; }
     }
 }

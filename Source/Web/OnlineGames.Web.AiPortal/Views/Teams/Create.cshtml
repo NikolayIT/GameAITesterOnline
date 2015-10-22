@@ -1,0 +1,57 @@
+﻿@model OnlineGames.Web.AiPortal.ViewModels.Teams.CreateTeamViewModel
+@{
+    ViewBag.Title = "Create a new team";
+}
+
+<h1>@ViewBag.Title</h1>
+<hr/>
+<div class="alert alert-success alert-dismissible">
+    <strong>Step One:</strong> All team members should login in this system and have valid accounts.<br/>
+    <strong>Step Two:</strong> One of the team members should create the team on this page (no matter who) by selecting one of the competitions from the drop down menu and selecting team name (which cannot be changed later). The name of the team should be between 6 and 25 symbols. Allowed symbols: latting letters, numbers, dot and underscore.<br />
+    <strong>Step Three:</strong> The one who creates the team should specify the usernames of all teammates in this form
+</div>
+@using (Html.BeginForm("Create", "Teams", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.CompetitionId, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.DropDownListFor(m => m.CompetitionId, ViewBag.Competitions as IEnumerable<SelectListItem>, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.CompetitionId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="TeamMembers[0]">Team member 1</label>
+        <div class="col-md-9">
+            <input type="text" class="form-control" value="@User.Identity.Name" disabled="disabled"/>
+            <input type="hidden" id="TeamMembers[0]" name="TeamMembers[0]" value="@User.Identity.Name" />
+        </div>
+    </div>
+    for (var i = 1; i < ViewBag.MaxTeamMembers; i++)
+    {
+        var value = string.Empty;
+        if (Model.TeamMembers.Count >= i)
+        {
+            value = Model.TeamMembers[i];
+        }
+        <div class="form-group">
+            <label class="col-md-3 control-label" for="TeamMembers[@i]">Team member @(i + 1)</label>
+            <div class="col-md-9">
+                <input class="form-control" id="TeamMembers[@i]" name="TeamMembers[@i]" type="text" value="@value" />
+            </div>
+        </div>
+    }
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-9">
+            <input type="submit" value="Create a new team" class="btn btn-success"/>
+        </div>
+    </div>
+}

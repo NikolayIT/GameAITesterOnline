@@ -18,6 +18,8 @@
 
         public DbSet<Role> Roles { get; set; }
 
+        public DbSet<Competition> Competitions { get; set; }
+
         public DbSet<Team> Teams { get; set; }
 
         public static AiPortalDbContext Create()

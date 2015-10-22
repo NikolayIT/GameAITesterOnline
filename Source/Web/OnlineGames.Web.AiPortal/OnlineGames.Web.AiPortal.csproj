@@ -175,6 +175,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -182,7 +183,8 @@
     <Compile Include="Infrastructure\AiPortalUserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\ExternalLogin\ExternalLoginViewModel.cs" />
+    <Compile Include="ViewModels\Account\ExternalLoginViewModel.cs" />
+    <Compile Include="ViewModels\Teams\CreateTeamViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -227,6 +229,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\LoginWithTelerikAcademy.cshtml" />
+    <Content Include="Views\Teams\Create.cshtml" />
+    <Content Include="Views\Teams\Info.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0-beta014\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
@@ -257,6 +261,7 @@
       <Name>OnlineGames.Services.AiPortal</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

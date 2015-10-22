@@ -1,4 +1,4 @@
-﻿namespace OnlineGames.Data.Migrations
+namespace OnlineGames.Data.Migrations
 {
     using System.Data.Entity.Migrations;
 
@@ -6,6 +6,24 @@
     {
         public override void Up()
         {
+            this.CreateTable(
+                "dbo.Competitions",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false),
+                        Descriptions = c.String(),
+                        IsActive = c.Boolean(nullable: false),
+                        MinimumParticipants = c.Int(nullable: false),
+                        MaximumParticipants = c.Int(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        ModifiedOn = c.DateTime(),
+                        IsDeleted = c.Boolean(nullable: false),
+                        DeletedOn = c.DateTime(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.IsDeleted);
+
             this.CreateTable(
                 "dbo.Roles",
                 c => new
@@ -44,12 +62,15 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
+                        CompetitionId = c.Int(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),
                         IsDeleted = c.Boolean(nullable: false),
                         DeletedOn = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Competitions", t => t.CompetitionId, cascadeDelete: true)
+                .Index(t => t.CompetitionId)
                 .Index(t => t.IsDeleted);
 
             this.CreateTable(
@@ -89,6 +110,7 @@
         {
             this.DropForeignKey("dbo.TeamMembers", "UserId", "dbo.Users");
             this.DropForeignKey("dbo.TeamMembers", "TeamId", "dbo.Teams");
+            this.DropForeignKey("dbo.Teams", "CompetitionId", "dbo.Competitions");
             this.DropForeignKey("dbo.UserRoles", "Role_Id", "dbo.Roles");
             this.DropForeignKey("dbo.UserRoles", "User_Id", "dbo.Users");
             this.DropIndex("dbo.UserRoles", new[] { "Role_Id" });
@@ -97,13 +119,16 @@
             this.DropIndex("dbo.TeamMembers", new[] { "UserId" });
             this.DropIndex("dbo.TeamMembers", new[] { "TeamId" });
             this.DropIndex("dbo.Teams", new[] { "IsDeleted" });
+            this.DropIndex("dbo.Teams", new[] { "CompetitionId" });
             this.DropIndex("dbo.Users", new[] { "IsDeleted" });
             this.DropIndex("dbo.Roles", new[] { "IsDeleted" });
+            this.DropIndex("dbo.Competitions", new[] { "IsDeleted" });
             this.DropTable("dbo.UserRoles");
             this.DropTable("dbo.TeamMembers");
             this.DropTable("dbo.Teams");
             this.DropTable("dbo.Users");
             this.DropTable("dbo.Roles");
+            this.DropTable("dbo.Competitions");
         }
     }
 }

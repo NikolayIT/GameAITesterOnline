@@ -6,7 +6,7 @@
     using OnlineGames.Common;
     using OnlineGames.Data.Models;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<AiPortalDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<AiPortalDbContext>
     {
         public Configuration()
         {
@@ -18,6 +18,7 @@
             if (!context.Roles.Any())
             {
                 this.SeedRoles(context);
+                this.SeedCompetitions(context);
 
                 context.SaveChanges();
             }
@@ -27,6 +28,26 @@
         {
             var role = new Role { Name = GlobalConstants.AdministratorRoleName };
             context.Roles.Add(role);
+        }
+
+        private void SeedCompetitions(AiPortalDbContext context)
+        {
+            context.Competitions.Add(
+                new Competition
+                    {
+                        Name = "Santase (Сантасе) AI",
+                        IsActive = true,
+                        MinimumParticipants = 2,
+                        MaximumParticipants = 3
+                    });
+            context.Competitions.Add(
+                new Competition
+                    {
+                        Name = "Texas Hold'em AI",
+                        IsActive = true,
+                        MinimumParticipants = 2,
+                        MaximumParticipants = 3
+                    });
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     public enum UserProvider
     {
-        LocalUser = 0,
+        // LocalUser = 0, => Not implemented, yet.
         TelerikAcademyUser = 1,
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace OnlineGames.Web.AiPortal.ViewModels.ExternalLogin
+﻿namespace OnlineGames.Web.AiPortal.ViewModels.Account
 {
     using System.ComponentModel.DataAnnotations;
 

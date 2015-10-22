@@ -59,9 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AiPortalDbContext.cs" />
-    <Compile Include="Migrations\201510191820560_InitialCreate.cs" />
-    <Compile Include="Migrations\201510191820560_InitialCreate.Designer.cs">
-      <DependentUpon>201510191820560_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201510221442070_InitialCreate.cs" />
+    <Compile Include="Migrations\201510221442070_InitialCreate.Designer.cs">
+      <DependentUpon>201510221442070_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,13 +85,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510191820560_InitialCreate.resx">
-      <DependentUpon>201510191820560_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0-beta014\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0-beta014\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201510221442070_InitialCreate.resx">
+      <DependentUpon>201510221442070_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\StyleCop.Analyzers.1.0.0-beta014\build\StyleCop.Analyzers.targets" Condition="Exists('..\..\packages\StyleCop.Analyzers.1.0.0-beta014\build\StyleCop.Analyzers.targets')" />

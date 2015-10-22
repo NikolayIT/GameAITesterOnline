@@ -13,7 +13,7 @@ namespace OnlineGames.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201510191820560_InitialCreate"; }
+            get { return "201510221442070_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

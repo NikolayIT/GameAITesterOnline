@@ -1,6 +1,7 @@
 ﻿namespace OnlineGames.Web.AiPortal
 {
     using System;
+    using System.Data.Entity;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Optimization;
@@ -8,6 +9,8 @@
     using System.Web.Script.Serialization;
     using System.Web.Security;
 
+    using OnlineGames.Data;
+    using OnlineGames.Data.Migrations;
     using OnlineGames.Web.AiPortal.Infrastructure;
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:File name must match first type name", Justification = "File name must be Global.asax.cs")]
@@ -15,6 +18,8 @@
     {
         protected void Application_Start()
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<AiPortalDbContext, Configuration>());
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
