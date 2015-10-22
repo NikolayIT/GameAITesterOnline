@@ -14,7 +14,7 @@
         @foreach (var teammember in team.TeamMembers)
         {
             <li class="active">
-                <img src="@teammember.AvatarUrl" alt="@teammember.UserName"/>
+                <img src="@teammember.AvatarUrl" width="32" alt="@teammember.UserName"/>
                 <span class="badge">@teammember.UserName</span>
             </li>
         }

@@ -15,7 +15,7 @@
     using OnlineGames.Web.AiPortal.Infrastructure.Mapping;
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:File name must match first type name", Justification = "File name must be Global.asax.cs")]
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
