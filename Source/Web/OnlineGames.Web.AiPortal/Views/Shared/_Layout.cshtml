@@ -21,6 +21,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li><a href="https://github.com/NikolayIT/GameAITesterOnline/issues/new" target="_blank">Bug report</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -30,7 +31,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - AI Competitions</p>
+            <p>&copy; @DateTime.Now.Year - <a href="https://github.com/NikolayIT/GameAITesterOnline">AI Competitions System</a> 0.1 (build 20151022.4a68de3)</p>
         </footer>
     </div>
 
