@@ -16,7 +16,10 @@
 
         private readonly IDbRepository<User> usersRepository;
 
-        public TeamsController(IDbRepository<Team> teamsRepository, IDbRepository<Competition> competitionsRepository, IDbRepository<User> usersRepository)
+        public TeamsController(
+            IDbRepository<Team> teamsRepository,
+            IDbRepository<Competition> competitionsRepository,
+            IDbRepository<User> usersRepository)
         {
             this.teamsRepository = teamsRepository;
             this.competitionsRepository = competitionsRepository;
@@ -93,7 +96,26 @@
 
         public ActionResult Info(int id)
         {
-            return this.View();
+            // TODO: Replace with automapper
+            var teamInfo =
+                this.teamsRepository.All()
+                    .Where(x => x.Id == id)
+                    .Select(
+                        x =>
+                        new TeamInfoViewModel
+                            {
+                                Name = x.Name,
+                                TeamMembers =
+                                    x.TeamMembers.Select(
+                                        tm =>
+                                        new TeamMemberViewModel
+                                            {
+                                                UserName = tm.User.UserName,
+                                                AvatarUrl = tm.User.AvatarUrl
+                                            })
+                            })
+                    .FirstOrDefault();
+            return this.View(teamInfo);
         }
 
         private void PrepareDataForTheView()

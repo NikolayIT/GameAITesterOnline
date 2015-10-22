@@ -12,7 +12,7 @@ namespace OnlineGames.Data.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false),
-                        Descriptions = c.String(),
+                        Description = c.String(),
                         IsActive = c.Boolean(nullable: false),
                         MinimumParticipants = c.Int(nullable: false),
                         MaximumParticipants = c.Int(nullable: false),
