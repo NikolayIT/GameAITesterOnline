@@ -4,6 +4,8 @@
     using System.Linq;
     using System.Web.Mvc;
 
+    using AutoMapper.QueryableExtensions;
+
     using OnlineGames.Data.Common;
     using OnlineGames.Data.Models;
     using OnlineGames.Web.AiPortal.ViewModels.Teams;
@@ -27,6 +29,7 @@
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Create()
         {
             this.PrepareDataForTheView();
@@ -34,6 +37,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Create(CreateTeamViewModel model)
         {
             var teamMembers = model.TeamMembers.ToList();
@@ -96,25 +100,8 @@
 
         public ActionResult Info(int id)
         {
-            // TODO: Replace with automapper
             var teamInfo =
-                this.teamsRepository.All()
-                    .Where(x => x.Id == id)
-                    .Select(
-                        x =>
-                        new TeamInfoViewModel
-                            {
-                                Name = x.Name,
-                                TeamMembers =
-                                    x.TeamMembers.Select(
-                                        tm =>
-                                        new TeamMemberViewModel
-                                            {
-                                                UserName = tm.User.UserName,
-                                                AvatarUrl = tm.User.AvatarUrl
-                                            })
-                            })
-                    .FirstOrDefault();
+                this.teamsRepository.All().Where(x => x.Id == id).ProjectTo<TeamInfoViewModel>().FirstOrDefault();
             return this.View(teamInfo);
         }
 

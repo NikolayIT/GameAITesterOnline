@@ -3,6 +3,8 @@
     using System.Linq;
     using System.Web.Mvc;
 
+    using AutoMapper.QueryableExtensions;
+
     using OnlineGames.Data.Common;
     using OnlineGames.Data.Models;
     using OnlineGames.Web.AiPortal.ViewModels.Home;
@@ -22,42 +24,13 @@
 
         public ActionResult Index()
         {
-            // TODO: Replace with automapper
-            var model = new IndexViewModel
-                            {
-                                ActiveCompetitions =
-                                    this.competitionsRepository.All()
-                                    .Where(x => x.IsActive)
-                                    .Select(
-                                        x =>
-                                        new IndexCompetitionViewModel
-                                            {
-                                                Name = x.Name,
-                                                Id = x.Id,
-                                                Description = x.Description
-                                            }),
-                                CurrentUserTeams =
-                                    this.teamsRepository.All()
-                                    .Where(
-                                        x =>
-                                        x.TeamMembers.Any(
-                                            tm => tm.User.UserName == this.User.Identity.Name))
-                                    .Select(
-                                        x =>
-                                        new TeamInfoViewModel
-                                            {
-                                                Id = x.Id,
-                                                Name = x.Name,
-                                                TeamMembers =
-                                                    x.TeamMembers.Select(
-                                                        tm =>
-                                                        new TeamMemberViewModel
-                                                            {
-                                                                UserName = tm.User.UserName,
-                                                                AvatarUrl = tm.User.AvatarUrl
-                                                            })
-                                            })
-                            };
+            var model = new IndexViewModel();
+            model.ActiveCompetitions =
+                this.competitionsRepository.All().Where(x => x.IsActive).ProjectTo<IndexCompetitionViewModel>();
+            model.CurrentUserTeams =
+                this.teamsRepository.All()
+                    .Where(x => x.TeamMembers.Any(tm => tm.User.UserName == this.User.Identity.Name))
+                    .ProjectTo<TeamInfoViewModel>();
             return this.View(model);
         }
     }
