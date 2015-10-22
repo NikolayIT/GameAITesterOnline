@@ -59,9 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AiPortalDbContext.cs" />
-    <Compile Include="Migrations\201510221500097_InitialCreate.cs" />
-    <Compile Include="Migrations\201510221500097_InitialCreate.Designer.cs">
-      <DependentUpon>201510221500097_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201510221601215_InitialCreate.cs" />
+    <Compile Include="Migrations\201510221601215_InitialCreate.Designer.cs">
+      <DependentUpon>201510221601215_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,8 +89,8 @@
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0-beta014\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510221500097_InitialCreate.resx">
-      <DependentUpon>201510221500097_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510221601215_InitialCreate.resx">
+      <DependentUpon>201510221601215_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

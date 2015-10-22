@@ -1,0 +1,22 @@
+﻿@model OnlineGames.Web.AiPortal.ViewModels.Competitions.CompetitionViewModel
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<h1>@ViewBag.Title</h1>
+<hr/>
+@Html.Raw(Model.Description)
+@foreach (var team in Model.Teams)
+{
+    <hr/>
+    <h3>@team.Name</h3>
+    <ul class="nav nav-justified">
+        @foreach (var teammember in team.TeamMembers)
+        {
+            <li class="active">
+                <img src="@teammember.AvatarUrl" alt="@teammember.UserName"/>
+                <span class="badge">@teammember.UserName</span>
+            </li>
+        }
+    </ul>
+}

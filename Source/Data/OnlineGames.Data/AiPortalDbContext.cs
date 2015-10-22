@@ -22,11 +22,6 @@
 
         public DbSet<Team> Teams { get; set; }
 
-        public static AiPortalDbContext Create()
-        {
-            return new AiPortalDbContext();
-        }
-
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();
