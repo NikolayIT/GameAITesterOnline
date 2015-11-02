@@ -14,3 +14,8 @@
         </li>
     }
 </ul>
+@if (Model.TeamMembers.Any(x => string.Equals(x.UserName, User.Identity.Name, StringComparison.OrdinalIgnoreCase)))
+{
+    <hr />
+    <a href="/Upload/Index/@Model.Id" class="btn btn-success">Upload AI Library</a>
+}

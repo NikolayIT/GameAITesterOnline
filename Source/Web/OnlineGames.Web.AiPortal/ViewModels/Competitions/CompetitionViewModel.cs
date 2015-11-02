@@ -14,6 +14,8 @@
 
         public string Description { get; set; }
 
+        public int MaximumParticipants { get; set; }
+
         public IEnumerable<TeamInfoViewModel> Teams { get; set; }
     }
 }

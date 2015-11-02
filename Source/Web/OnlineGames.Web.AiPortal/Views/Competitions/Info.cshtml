@@ -23,5 +23,12 @@
                 <span class="badge">@teammember.UserName</span>
             </div>
         }
+        @for (var i = team.TeamMembers.Count() + 1; i <= Model.MaximumParticipants; i++)
+        {
+            <div class="col-sm-2"></div>
+        }
+        <div class="col-sm-2">
+            <strong><span class="center-block text-center">0 points</span></strong>
+        </div>
     </div>
 }
