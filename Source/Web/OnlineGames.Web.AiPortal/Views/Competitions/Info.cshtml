@@ -9,14 +9,19 @@
 @foreach (var team in Model.Teams)
 {
     <hr/>
-    <h3>@team.Name</h3>
-    <ul class="nav nav-justified">
+    <div class="row">
+        <div class="col-sm-4">
+            <h4>
+                <strong>1.</strong>
+                <a href="/Teams/Info/@team.Id">@team.Name</a>
+            </h4>
+        </div>
         @foreach (var teammember in team.TeamMembers)
         {
-            <li class="active">
-                <img src="@teammember.AvatarUrl" width="32" alt="@teammember.UserName"/>
+            <div class="col-sm-2">
+                <img src="@teammember.AvatarUrl" width="36" height="36" alt="@teammember.UserName" class="img-thumbnail"/>
                 <span class="badge">@teammember.UserName</span>
-            </li>
+            </div>
         }
-    </ul>
+    </div>
 }
