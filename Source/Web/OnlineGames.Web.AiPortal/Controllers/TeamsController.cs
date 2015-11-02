@@ -10,7 +10,7 @@
     using OnlineGames.Data.Models;
     using OnlineGames.Web.AiPortal.ViewModels.Teams;
 
-    public class TeamsController : Controller
+    public class TeamsController : BaseController
     {
         private readonly IDbRepository<Team> teamsRepository;
 

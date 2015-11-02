@@ -16,7 +16,7 @@
     using OnlineGames.Web.AiPortal.Infrastructure;
     using OnlineGames.Web.AiPortal.ViewModels.Account;
 
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private readonly IDbRepository<User> usersRepository;
         private readonly IDbRepository<Role> rolesRepository;

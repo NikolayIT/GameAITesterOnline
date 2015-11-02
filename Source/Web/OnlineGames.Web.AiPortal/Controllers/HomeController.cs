@@ -10,7 +10,7 @@
     using OnlineGames.Web.AiPortal.ViewModels.Home;
     using OnlineGames.Web.AiPortal.ViewModels.Teams;
 
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly IDbRepository<Competition> competitionsRepository;
 

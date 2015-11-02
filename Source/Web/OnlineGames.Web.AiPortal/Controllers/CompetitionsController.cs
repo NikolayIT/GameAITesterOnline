@@ -9,7 +9,7 @@
     using OnlineGames.Data.Models;
     using OnlineGames.Web.AiPortal.ViewModels.Competitions;
 
-    public class CompetitionsController : Controller
+    public class CompetitionsController : BaseController
     {
         private readonly IDbRepository<Competition> competitionsRepository;
 
