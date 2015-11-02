@@ -4,3 +4,13 @@
 }
 
 <h1>@ViewBag.Title</h1>
+<form action="" method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label for="file">.dll file</label>
+        <input class="form-control alert-success" type="file" name="file" id="file" />
+        <p class="help-block">By uploading a new file with your AI all your results will be retested with the new version provided.</p>
+        <p class="help-block">You will not be able to send another file for the next 12 hours.</p>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
