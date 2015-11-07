@@ -15,6 +15,7 @@ namespace OnlineGames.Web.AiPortal
 
     using OnlineGames.Data;
     using OnlineGames.Data.Common;
+    using OnlineGames.Services.AiPortal.Uploads;
 
     public static class NinjectWebCommon
     {
@@ -68,6 +69,8 @@ namespace OnlineGames.Web.AiPortal
         {
             kernel.Bind<DbContext>().To<AiPortalDbContext>().InRequestScope();
             kernel.Bind(typeof(IDbRepository<>)).To(typeof(DbRepository<>));
+
+            kernel.Bind<IUploadFileValidator>().To<UploadFileValidator>().InRequestScope();
         }
     }
 }

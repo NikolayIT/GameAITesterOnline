@@ -200,6 +200,7 @@
     <Compile Include="ViewModels\Teams\CreateTeamViewModel.cs" />
     <Compile Include="ViewModels\Teams\TeamInfoViewModel.cs" />
     <Compile Include="ViewModels\Teams\TeamMemberViewModel.cs" />
+    <Compile Include="ViewModels\Upload\FileUploadInputModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

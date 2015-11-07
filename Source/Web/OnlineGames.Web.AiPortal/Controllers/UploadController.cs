@@ -10,16 +10,21 @@
 
     using OnlineGames.Data.Common;
     using OnlineGames.Data.Models;
+    using OnlineGames.Services.AiPortal.Uploads;
     using OnlineGames.Web.AiPortal.ViewModels.Teams;
+    using OnlineGames.Web.AiPortal.ViewModels.Upload;
 
     [Authorize]
     public class UploadController : BaseController
     {
         private readonly IDbRepository<Team> teamsRepository;
 
-        public UploadController(IDbRepository<Team> teamsRepository)
+        private readonly IUploadFileValidator uploadFileValidator;
+
+        public UploadController(IDbRepository<Team> teamsRepository, IUploadFileValidator uploadFileValidator)
         {
             this.teamsRepository = teamsRepository;
+            this.uploadFileValidator = uploadFileValidator;
         }
 
         [HttpGet]
@@ -43,16 +48,37 @@
         }
 
         [HttpPost]
-        public ActionResult Index(HttpPostedFileBase file)
+        public ActionResult Index(FileUploadInputModel model)
         {
-            if (file.ContentLength > 0)
+            // TODO: Replace this.User.Identity.Name with identity provider for easier unit testing
+            var team =
+                this.teamsRepository.All()
+                    .Where(
+                        x => x.Id == model.Id && x.TeamMembers.Any(tm => tm.User.UserName == this.User.Identity.Name))
+                    .ProjectTo<TeamInfoViewModel>()
+                    .FirstOrDefault();
+
+            if (team == null)
             {
-                var fileName = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
-                file.SaveAs(path);
+                return new HttpStatusCodeResult(
+                    HttpStatusCode.Forbidden,
+                    "You do not have permissions to upload files for this team!");
             }
 
-            return RedirectToAction("Index");
+            var validateFileResult = this.uploadFileValidator.ValidateFile(
+                model.AiFile.FileName,
+                model.AiFile.ContentLength,
+                model.AiFile.InputStream);
+            if (!validateFileResult.IsValid)
+            {
+                this.ViewBag.Error = validateFileResult.Error;
+                return this.View(team);
+            }
+            else
+            {
+                // TODO: Save in database
+                return this.RedirectToAction("Index");
+            }
         }
     }
 }
