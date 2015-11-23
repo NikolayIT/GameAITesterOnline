@@ -87,7 +87,12 @@
             else
             {
                 // Save in the database
-                var upload = new Upload { TeamId = team.Id, FileContents = validateFileResult.FileContent };
+                var upload = new Upload
+                                 {
+                                     TeamId = team.Id,
+                                     FileContents = validateFileResult.FileContent,
+                                     FileName = model.AiFile.FileName
+                                 };
                 this.uploadRepository.Add(upload);
                 this.uploadRepository.Save();
 

@@ -12,5 +12,7 @@
         public string Name { get; set; }
 
         public IEnumerable<TeamMemberViewModel> TeamMembers { get; set; }
+
+        public IEnumerable<UploadViewModel> Uploads { get; set; }
     }
 }

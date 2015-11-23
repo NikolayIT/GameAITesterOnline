@@ -8,10 +8,12 @@ namespace OnlineGames.Data.Migrations
         {
             this.CreateTable(
                 "dbo.Uploads",
-                c => new
+                c =>
+                new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         TeamId = c.Int(nullable: false),
+                        FileName = c.String(),
                         FileContents = c.Binary(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),

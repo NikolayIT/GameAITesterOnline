@@ -9,14 +9,17 @@
         public Team()
         {
             this.TeamMembers = new HashSet<TeamMember>();
+            this.Uploads = new HashSet<Upload>();
         }
 
         public string Name { get; set; }
 
-        public virtual ICollection<TeamMember> TeamMembers { get; set; }
-
         public int CompetitionId { get; set; }
 
         public virtual Competition Competition { get; set; }
+
+        public virtual ICollection<TeamMember> TeamMembers { get; set; }
+
+        public virtual ICollection<Upload> Uploads { get; set; }
     }
 }

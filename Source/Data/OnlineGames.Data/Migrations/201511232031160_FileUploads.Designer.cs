@@ -13,7 +13,7 @@ namespace OnlineGames.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201511231224536_FileUploads"; }
+            get { return "201511232031160_FileUploads"; }
         }
         
         string IMigrationMetadata.Source

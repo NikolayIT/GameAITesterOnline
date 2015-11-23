@@ -19,3 +19,28 @@
     <hr />
     <a href="/Upload/Index/@Model.Id" class="btn btn-success">Upload AI Library</a>
 }
+
+<h2>Uploads</h2>
+@if (Model.Uploads.Any())
+{
+    <p>Only last uploaded file will be used for AI battles.</p>
+    <table class="table table-hover table-striped">
+        <tr>
+            <th>#</th>
+            <th>File name</th>
+            <th>Uploaded on</th>
+        </tr>
+        @foreach (var upload in Model.Uploads)
+        {
+            <tr>
+                <td>@upload.Id</td>
+                <td>@upload.FileName</td>
+                <td>@upload.CreatedOn</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>No uploads for this team :(</p>
+}

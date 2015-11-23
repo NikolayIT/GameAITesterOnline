@@ -10,6 +10,8 @@
 
         public Team Team { get; set; }
 
+        public string FileName { get; set; }
+
         [Required]
         public byte[] FileContents { get; set; }
     }
