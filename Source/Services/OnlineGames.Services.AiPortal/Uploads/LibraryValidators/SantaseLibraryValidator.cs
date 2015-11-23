@@ -4,9 +4,7 @@
     using System.Linq;
     using System.Reflection;
 
-    using Santase.Logic;
     using Santase.Logic.GameMechanics;
-    using Santase.Logic.Logger;
     using Santase.Logic.Players;
 
     public class SantaseLibraryValidator : ILibraryValidator
