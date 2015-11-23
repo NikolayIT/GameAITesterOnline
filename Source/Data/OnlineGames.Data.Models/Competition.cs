@@ -23,6 +23,8 @@
 
         public int MaximumParticipants { get; set; }
 
+        public string LibraryValidatorClassName { get; set; }
+
         public virtual ICollection<Team> Teams { get; set; }
     }
 }

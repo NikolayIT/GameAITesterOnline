@@ -5,9 +5,15 @@
     using System.IO;
     using System.Reflection;
 
+    using OnlineGames.Services.AiPortal.Uploads.LibraryValidators;
+
     public class UploadFileValidator : IUploadFileValidator
     {
-        public UploadFileValidatorResult ValidateFile(string fileName, int contentLength, Stream inputStream)
+        public UploadFileValidatorResult ValidateFile(
+            string fileName,
+            int contentLength,
+            Stream inputStream,
+            ILibraryValidator libraryValidator)
         {
             var errors = new List<string>();
             if (!fileName.EndsWith(".dll"))
@@ -15,9 +21,9 @@
                 return new UploadFileValidatorResult("Only .dll files are supported.");
             }
 
-            if (((contentLength / 1024) / 1024) > 1)
+            if (((contentLength / 1024) / 1024) > 2)
             {
-                return new UploadFileValidatorResult("Files should be less than 1MB.");
+                return new UploadFileValidatorResult("Files should be less than 2MB.");
             }
 
             byte[] fileData;
@@ -43,7 +49,14 @@
                 return new UploadFileValidatorResult($"Loading assembly failed: {ex.Message}");
             }
 
-            //// TODO: Validate existence of IPlayer inheritant
+            if (libraryValidator != null)
+            {
+                var libraryValidatorResult = libraryValidator.Validate(assembly);
+                if (!libraryValidatorResult.IsValid)
+                {
+                    return new UploadFileValidatorResult($"Library validation failed: {libraryValidatorResult.Error}");
+                }
+            }
 
             return new UploadFileValidatorResult(fileData);
         }

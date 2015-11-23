@@ -22,6 +22,8 @@
 
         public DbSet<Team> Teams { get; set; }
 
+        public DbSet<Upload> Uploads { get; set; }
+
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();

@@ -28,6 +28,22 @@
         </div>
     </div>
     <div class="container body-content">
+        @if (!string.IsNullOrWhiteSpace(ViewBag.Error))
+        {
+            <div class="alert alert-danger">@ViewBag.Error</div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">@TempData["Error"]</div>
+        }
+        @if (!string.IsNullOrWhiteSpace(ViewBag.Info))
+        {
+            <div class="alert alert-info">@ViewBag.Info</div>
+        }
+        @if (TempData["Info"] != null)
+        {
+            <div class="alert alert-info">@TempData["Info"]</div>
+        }
         @RenderBody()
         <hr />
         <footer>
