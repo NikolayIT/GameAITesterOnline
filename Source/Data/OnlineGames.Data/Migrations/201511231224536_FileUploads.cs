@@ -11,26 +11,26 @@ namespace OnlineGames.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        TeamId = c.Int(nullable: false),
                         FileContents = c.Binary(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),
                         IsDeleted = c.Boolean(nullable: false),
                         DeletedOn = c.DateTime(),
-                        Team_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Teams", t => t.Team_Id, cascadeDelete: true)
-                .Index(t => t.IsDeleted)
-                .Index(t => t.Team_Id);
+                .ForeignKey("dbo.Teams", t => t.TeamId, cascadeDelete: true)
+                .Index(t => t.TeamId)
+                .Index(t => t.IsDeleted);
 
             this.AddColumn("dbo.Competitions", "LibraryValidatorClassName", c => c.String());
         }
 
         public override void Down()
         {
-            this.DropForeignKey("dbo.Uploads", "Team_Id", "dbo.Teams");
-            this.DropIndex("dbo.Uploads", new[] { "Team_Id" });
+            this.DropForeignKey("dbo.Uploads", "TeamId", "dbo.Teams");
             this.DropIndex("dbo.Uploads", new[] { "IsDeleted" });
+            this.DropIndex("dbo.Uploads", new[] { "TeamId" });
             this.DropColumn("dbo.Competitions", "LibraryValidatorClassName");
             this.DropTable("dbo.Uploads");
         }

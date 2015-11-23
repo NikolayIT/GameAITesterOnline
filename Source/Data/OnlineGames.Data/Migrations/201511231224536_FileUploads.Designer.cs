@@ -2,6 +2,7 @@
 namespace OnlineGames.Data.Migrations
 {
     using System.CodeDom.Compiler;
+    using System.Data.Entity.Migrations;
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
@@ -12,7 +13,7 @@ namespace OnlineGames.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201511231000168_FileUploads"; }
+            get { return "201511231224536_FileUploads"; }
         }
         
         string IMigrationMetadata.Source

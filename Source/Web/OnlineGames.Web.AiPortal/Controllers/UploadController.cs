@@ -19,11 +19,14 @@
     {
         private readonly IDbRepository<Team> teamsRepository;
 
+        private readonly IDbRepository<Upload> uploadRepository;
+
         private readonly IUploadFileValidator uploadFileValidator;
 
-        public UploadController(IDbRepository<Team> teamsRepository, IUploadFileValidator uploadFileValidator)
+        public UploadController(IDbRepository<Team> teamsRepository, IDbRepository<Upload> uploadRepository, IUploadFileValidator uploadFileValidator)
         {
             this.teamsRepository = teamsRepository;
+            this.uploadRepository = uploadRepository;
             this.uploadFileValidator = uploadFileValidator;
         }
 
@@ -83,7 +86,11 @@
             }
             else
             {
-                // TODO: Save in database
+                // Save in the database
+                var upload = new Upload { TeamId = team.Id, FileContents = validateFileResult.FileContent };
+                this.uploadRepository.Add(upload);
+                this.uploadRepository.Save();
+
                 // TODO: Initiate AI battles
                 this.TempData["Info"] = "File uploaded successfully!";
                 return this.RedirectToAction("Info", "Teams", new { id = team.Id });

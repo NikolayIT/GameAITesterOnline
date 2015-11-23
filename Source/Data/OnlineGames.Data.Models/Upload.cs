@@ -6,7 +6,8 @@
 
     public class Upload : BaseModel<int>
     {
-        [Required]
+        public int TeamId { get; set; }
+
         public Team Team { get; set; }
 
         [Required]

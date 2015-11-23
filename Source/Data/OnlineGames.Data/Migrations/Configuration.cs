@@ -41,8 +41,9 @@
 <p>The game is named 66 because the objective of each hand is to be the first to collect 66 card points in tricks and melds. </p>",
                         IsActive = true,
                         MinimumParticipants = 2,
-                        MaximumParticipants = 3
-                    });
+                        MaximumParticipants = 3,
+                        LibraryValidatorClassName = "OnlineGames.Services.AiPortal.Uploads.LibraryValidators.SantaseLibraryValidator"
+                });
             context.Competitions.Add(
                 new Competition
                     {
@@ -52,8 +53,9 @@
 <p>The best 5-card hand using any combination of the five community cards and two hole cards wins.</p>",
                         IsActive = true,
                         MinimumParticipants = 2,
-                        MaximumParticipants = 3
-                    });
+                        MaximumParticipants = 3,
+                        LibraryValidatorClassName = "OnlineGames.Services.AiPortal.Uploads.LibraryValidators.TexasHoldemLibraryValidator"
+                });
         }
     }
 }
