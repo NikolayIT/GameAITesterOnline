@@ -3,7 +3,7 @@
     ViewBag.Title = Model.Name;
 }
 
-<h1>@ViewBag.Title</h1>
+<h1>@ViewBag.Title (@Model.Teams.Count() teams)</h1>
 <hr/>
 @Html.Raw(Model.Description)
 @foreach (var team in Model.Teams)
