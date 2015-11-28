@@ -29,6 +29,7 @@
             IPlayer secondInstance;
             try
             {
+                // TODO: Time limit (if available use decorator from the library)
                 // TODO: var sandbox = Sandbox.CreateSandbox();
                 // TODO: firstInstance = sandbox.CreateInstanceFromAndUnwrap(playerClass.Assembly.FullName, playerClass.FullName) as IPlayer;
                 // TODO: secondInstance = sandbox.CreateInstanceFromAndUnwrap(playerClass.Assembly.FullName, playerClass.FullName) as IPlayer;

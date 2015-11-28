@@ -1,19 +1,25 @@
 ﻿@model OnlineGames.Web.AiPortal.ViewModels.Competitions.CompetitionViewModel
 @{
     ViewBag.Title = Model.Name;
+    var position = 0;
 }
 
 <h1>@ViewBag.Title (@Model.Teams.Count() teams)</h1>
 <hr/>
 @Html.Raw(Model.Description)
-@foreach (var team in Model.Teams)
+@foreach (var team in Model.Teams.OrderByDescending(x => x.Points).ThenBy(x => x.Id))
 {
+    position++;
     <hr/>
     <div class="row">
         <div class="col-sm-4">
             <h4>
-                <strong>1.</strong>
+                <strong>@position.</strong>
                 <a href="/Teams/Info/@team.Id">@team.Name</a>
+                @if (team.Uploads.Any())
+                {
+                    <small><i class="glyphicon glyphicon-upload" title="Has uploaded file"></i></small>
+                }
             </h4>
         </div>
         @foreach (var teammember in team.TeamMembers)
