@@ -19,11 +19,11 @@ namespace OnlineGames.Data.Models
 
         public int FirstTeamId { get; set; }
 
-        public Team FirstTeam { get; set; }
+        public virtual Team FirstTeam { get; set; }
 
         public int SecondTeamId { get; set; }
 
-        public Team SecondTeam { get; set; }
+        public virtual Team SecondTeam { get; set; }
 
         [DefaultValue(false)]
         public bool IsFinished { get; set; }

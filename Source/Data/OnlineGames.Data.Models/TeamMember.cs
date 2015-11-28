@@ -11,10 +11,10 @@ namespace OnlineGames.Data.Models
     {
         public int TeamId { get; set; }
 
-        public Team Team { get; set; }
+        public virtual Team Team { get; set; }
 
         public int UserId { get; set; }
 
-        public User User { get; set; }
+        public virtual User User { get; set; }
     }
 }

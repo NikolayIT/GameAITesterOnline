@@ -11,7 +11,7 @@ namespace OnlineGames.Data.Models
     {
         public int BattleId { get; set; }
 
-        public Battle Battle { get; set; }
+        public virtual Battle Battle { get; set; }
 
         public string Report { get; set; }
 
