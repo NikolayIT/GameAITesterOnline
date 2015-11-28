@@ -70,6 +70,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Battles\BattlesGenerator.cs" />
+    <Compile Include="Battles\IBattlesGenerator.cs" />
     <Compile Include="IRemoteDataService.cs" />
     <Compile Include="Models\CheckUserLoginApiModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
