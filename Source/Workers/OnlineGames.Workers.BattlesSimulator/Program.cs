@@ -19,7 +19,7 @@ namespace OnlineGames.Workers.BattlesSimulator
         {
             try
             {
-                var servicesToRun = new ServiceBase[] { new Service1() };
+                var servicesToRun = new ServiceBase[] { new BattlesSimulatorService() };
                 ServiceBase.Run(servicesToRun);
             }
             catch (Exception exception)
