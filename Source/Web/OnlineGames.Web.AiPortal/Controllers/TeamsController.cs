@@ -103,7 +103,6 @@ namespace OnlineGames.Web.AiPortal.Controllers
             }
         }
 
-        // TODO: List file uploads
         public ActionResult Info(int id)
         {
             var teamInfo =

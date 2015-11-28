@@ -1,4 +1,5 @@
-﻿@model OnlineGames.Web.AiPortal.ViewModels.Teams.TeamInfoViewModel
+﻿@using OnlineGames.Web.AiPortal.Infrastructure
+@model OnlineGames.Web.AiPortal.ViewModels.Teams.TeamInfoViewModel
 @{
     ViewBag.Title = $"Team {Model.Name}";
 }
@@ -23,19 +24,24 @@
 <h2>Uploads</h2>
 @if (Model.Uploads.Any())
 {
-    <p>Only last uploaded file will be used for AI battles.</p>
+    <p>Only the last uploaded file will be used for AI battles.</p>
     <table class="table table-hover table-striped">
         <tr>
             <th>#</th>
             <th>File name</th>
             <th>Uploaded on</th>
+            @if (User.IsAdmin() || Model.TeamMembers.Any(x => x.UserName == User.Identity.Name)) { <th>Download</th> }
         </tr>
-        @foreach (var upload in Model.Uploads)
+        @foreach (var upload in Model.Uploads.OrderByDescending(x => x.Id))
         {
             <tr>
                 <td>@upload.Id</td>
                 <td>@upload.FileName</td>
                 <td>@upload.CreatedOn</td>
+                @if (User.IsAdmin() || Model.TeamMembers.Any(x => x.UserName == User.Identity.Name))
+                {
+                    <th><a href="/Upload/Download/@upload.Id"><i class="glyphicon glyphicon-download"></i></a></th>
+                }
             </tr>
         }
     </table>

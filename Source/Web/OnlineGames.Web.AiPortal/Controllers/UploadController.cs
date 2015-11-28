@@ -16,6 +16,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
     using OnlineGames.Data.Models;
     using OnlineGames.Services.AiPortal.Uploads;
     using OnlineGames.Services.AiPortal.Uploads.LibraryValidators;
+    using OnlineGames.Web.AiPortal.Infrastructure;
     using OnlineGames.Web.AiPortal.ViewModels.Teams;
     using OnlineGames.Web.AiPortal.ViewModels.Upload;
 
@@ -105,6 +106,36 @@ namespace OnlineGames.Web.AiPortal.Controllers
                 this.TempData["Info"] = "File uploaded successfully!";
                 return this.RedirectToAction("Info", "Teams", new { id = team.Id });
             }
+        }
+
+        [HttpGet]
+        public ActionResult Download(int id)
+        {
+            var upload =
+                this.uploadRepository.All()
+                    .Where(x => x.Id == id)
+                    .Select(
+                        x =>
+                        new
+                            {
+                                TeamMembers = x.Team.TeamMembers.Select(tm => tm.User.UserName),
+                                x.FileContents,
+                                x.CreatedOn,
+                                x.FileName
+                            })
+                    .FirstOrDefault();
+            if (upload == null)
+            {
+                return this.HttpNotFound("Upload file not found.");
+            }
+
+            if (!upload.TeamMembers.Contains(this.User.Identity.Name, StringComparer.InvariantCultureIgnoreCase)
+                && !this.User.IsAdmin())
+            {
+                return new HttpUnauthorizedResult("You do not have permissions to download this file!");
+            }
+
+            return this.File(upload.FileContents, "application/x-msdownload", $"{upload.FileName}_{upload.CreatedOn.ToLocalTime()}.dll");
         }
     }
 }

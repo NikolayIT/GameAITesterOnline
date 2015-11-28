@@ -188,6 +188,7 @@
     </Compile>
     <Compile Include="Infrastructure\AiPortalPrincipal.cs" />
     <Compile Include="Infrastructure\AiPortalUserData.cs" />
+    <Compile Include="Infrastructure\IPrincipalExtensions.cs" />
     <Compile Include="Infrastructure\Mapping\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\Mapping\IMapFrom{T}.cs" />
