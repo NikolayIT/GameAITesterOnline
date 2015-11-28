@@ -54,7 +54,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
         {
             var newBattles = this.battlesGenerator.GenerateBattles(this.teamsRepository, this.battlesRepository, id);
             this.TempData["Info"] = $"{newBattles} new battles created successfully!";
-            return this.View();
+            return this.RedirectToAction(nameof(this.Info), new { id });
         }
     }
 }

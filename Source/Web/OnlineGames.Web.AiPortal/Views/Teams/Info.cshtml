@@ -2,7 +2,7 @@
 @model OnlineGames.Web.AiPortal.ViewModels.Teams.TeamInfoViewModel
 @{
     var currentUserIsPartOfTheTeam = Model.TeamMembers.Any(x => string.Equals(x.UserName, User.Identity.Name, StringComparison.OrdinalIgnoreCase));
-    ViewBag.Title = $"Team {Model.Name}";
+    ViewBag.Title = $"Team {Model.Name} ({Model.Points} points)";
 }
 
 <h1>
