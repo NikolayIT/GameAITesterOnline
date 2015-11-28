@@ -5,9 +5,13 @@
 
 namespace OnlineGames.Web.AiPortal.ViewModels.Teams
 {
+    using System;
+
     public class TeamBattleViewModel
     {
         public int Id { get; set; }
+
+        public int OpponentTeamId { get; set; }
 
         public string OpponentTeam { get; set; }
 
@@ -16,5 +20,9 @@ namespace OnlineGames.Web.AiPortal.ViewModels.Teams
         public int TeamWins { get; set; }
 
         public int OpponentWins { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
+
+        public string Comment { get; set; }
     }
 }

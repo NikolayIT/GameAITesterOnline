@@ -5,8 +5,16 @@
     ViewBag.Title = $"Team {Model.Name}";
 }
 
-<h1>@ViewBag.Title</h1>
+<h1>
+    @ViewBag.Title
+    @if (currentUserIsPartOfTheTeam)
+    {
+        <a href="/Upload/Index/@Model.Id" class="btn btn-success">Upload AI Library</a>
+    }
+</h1>
+
 <hr/>
+
 <ul class="nav nav-justified">
     @foreach (var teammember in Model.TeamMembers)
     {
@@ -16,17 +24,14 @@
         </li>
     }
 </ul>
-@if (currentUserIsPartOfTheTeam)
-{
-    <hr />
-    <a href="/Upload/Index/@Model.Id" class="btn btn-success">Upload AI Library</a>
-}
+
+<hr/>
 
 <h2>Uploads</h2>
 @if (Model.Uploads.Any())
 {
     <p>Only the last uploaded file will be used for AI battles.</p>
-    <table class="table table-hover table-striped">
+    <table class="table table-hover table-striped table-bordered">
         <tr>
             <th>#</th>
             <th>File name</th>
@@ -55,24 +60,36 @@ else
     <p>No uploads for this team :(</p>
 }
 
+<hr/>
+
 <h2>Battles</h2>
 @if (Model.Battles.Any())
 {
-    <p>Only the last uploaded file will be used for AI battles.</p>
-    <table class="table table-hover table-striped">
+    <table class="table table-hover table-condensed">
         <tr>
-            <th>Opponent</th>
+            <th>Opponent team</th>
             <th>Team points</th>
             <th>Opponent points</th>
-            <th>Is finished</th>
+            <th>Comment</th>
+            <th>Last change</th>
         </tr>
         @foreach (var upload in Model.Battles.OrderBy(x => x.OpponentTeam))
         {
             <tr>
-                <td>@upload.OpponentTeam</td>
+                <td><a href="/Teams/Info/@upload.OpponentTeamId">@upload.OpponentTeam</a></td>
                 <td>@upload.TeamWins</td>
                 <td>@upload.OpponentWins</td>
-                <td>@upload.Finished</td>
+                <td>
+                    @if (!upload.Finished)
+                    {
+                        <span>Battle is not finished, yet.</span>
+                    }
+                    else
+                    {
+                        <span>@upload.Comment</span>
+                    }
+                </td>
+                <td>@upload.ModifiedOn</td>
             </tr>
         }
     </table>

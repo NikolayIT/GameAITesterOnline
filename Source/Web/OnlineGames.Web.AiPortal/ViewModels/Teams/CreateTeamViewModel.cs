@@ -21,6 +21,7 @@ namespace OnlineGames.Web.AiPortal.ViewModels.Teams
         [Required]
         [StringLength(25, MinimumLength = 6)]
         [RegularExpression(@"[0-9a-zA-Z_\-.]+")]
+        [Display(Name = "Team name")]
         public string Name { get; set; }
 
         public IList<string> TeamMembers { get; set; }

@@ -132,8 +132,9 @@ namespace OnlineGames.Web.AiPortal.Controllers
                             {
                                 Id = x.Id,
                                 Finished = x.BattleFinished,
-                                OpponentTeam =
-                                    x.FirstTeamId == id ? x.SecondTeam.Name : x.FirstTeam.Name,
+                                ModifiedOn = x.ModifiedOn,
+                                OpponentTeam = x.FirstTeamId == id ? x.SecondTeam.Name : x.FirstTeam.Name,
+                                OpponentTeamId = x.FirstTeamId == id ? x.SecondTeamId : x.FirstTeamId,
                                 TeamWins =
                                     x.BattleGameResults.Count(
                                         game =>
