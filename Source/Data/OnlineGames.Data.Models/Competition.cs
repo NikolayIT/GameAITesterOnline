@@ -1,11 +1,12 @@
 ﻿// <copyright file="Competition.cs" company="Nikolay Kostov (Nikolay.IT)">
 // Copyright (c) Nikolay Kostov (Nikolay.IT). All Rights Reserved.
-// Licensed under the MIT License, Version 2.0. See LICENSE in the project root for license information.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
 // </copyright>
 
 namespace OnlineGames.Data.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     using OnlineGames.Data.Common.Models;
@@ -27,6 +28,9 @@ namespace OnlineGames.Data.Models
         public int MinimumParticipants { get; set; }
 
         public int MaximumParticipants { get; set; }
+
+        [DefaultValue(1000)]
+        public int GamesToPlayForEachBattle { get; set; }
 
         public string LibraryValidatorClassName { get; set; }
 

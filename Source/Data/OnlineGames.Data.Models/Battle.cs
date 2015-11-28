@@ -1,11 +1,12 @@
 ﻿// <copyright file="Battle.cs" company="Nikolay Kostov (Nikolay.IT)">
 // Copyright (c) Nikolay Kostov (Nikolay.IT). All Rights Reserved.
-// Licensed under the MIT License, Version 2.0. See LICENSE in the project root for license information.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
 // </copyright>
 
 namespace OnlineGames.Data.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel;
 
     using OnlineGames.Data.Common.Models;
 
@@ -23,6 +24,9 @@ namespace OnlineGames.Data.Models
         public int SecondTeamId { get; set; }
 
         public Team SecondTeam { get; set; }
+
+        [DefaultValue(false)]
+        public bool BattleFinished { get; set; }
 
         public virtual ICollection<BattleGameResult> BattleGameResults { get; set; }
     }

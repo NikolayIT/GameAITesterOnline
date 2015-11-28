@@ -9,7 +9,7 @@
     },
     "documentationRules": {
       "companyName": "Nikolay Kostov (Nikolay.IT)",
-      "copyrightText": "Copyright (c) {companyName}. All Rights Reserved.\r\nLicensed under the MIT License, Version 2.0. See LICENSE in the project root for license information."
+      "copyrightText": "Copyright (c) {companyName}. All Rights Reserved.\r\nLicensed under the MIT License. See LICENSE in the project root for license information."
     }
   }
 }
