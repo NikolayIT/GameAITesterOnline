@@ -6,7 +6,6 @@
 namespace OnlineGames.Services.AiPortal.Uploads
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Reflection;
 
@@ -63,6 +62,16 @@ namespace OnlineGames.Services.AiPortal.Uploads
             }
 
             return new UploadFileValidatorResult(fileData);
+        }
+
+        public ILibraryValidator CreateLibraryValidator(string fullClassName)
+        {
+            var libraryValidator = fullClassName != null
+                                       ? Activator.CreateInstance(
+                                           typeof(ILibraryValidator).Assembly.FullName,
+                                           fullClassName).Unwrap() as ILibraryValidator
+                                       : null;
+            return libraryValidator;
         }
     }
 }

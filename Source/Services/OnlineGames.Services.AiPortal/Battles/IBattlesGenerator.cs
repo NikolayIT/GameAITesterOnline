@@ -11,5 +11,7 @@ namespace OnlineGames.Services.AiPortal.Battles
     public interface IBattlesGenerator
     {
         int GenerateBattles(IDbRepository<Team> teamsRepository, IDbRepository<Battle> battlesRepository, int competitionId);
+
+        void RestartBattlesFor(IDbRepository<Battle> battlesRepository, int teamId);
     }
 }

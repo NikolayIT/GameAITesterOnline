@@ -39,5 +39,16 @@ namespace OnlineGames.Services.AiPortal.Battles
             battlesRepository.Save();
             return newBattles;
         }
+
+        public void RestartBattlesFor(IDbRepository<Battle> battlesRepository, int teamId)
+        {
+            var battlesForTeam = battlesRepository.All().Where(x => x.FirstTeamId == teamId || x.SecondTeamId == teamId);
+            foreach (var battle in battlesForTeam)
+            {
+                battle.BattleFinished = false;
+            }
+
+            battlesRepository.Save();
+        }
     }
 }

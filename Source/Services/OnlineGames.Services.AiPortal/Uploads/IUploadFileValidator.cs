@@ -16,5 +16,7 @@ namespace OnlineGames.Services.AiPortal.Uploads
             int contentLength,
             Stream inputStream,
             ILibraryValidator libraryValidator);
+
+        ILibraryValidator CreateLibraryValidator(string fullClassName);
     }
 }

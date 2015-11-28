@@ -14,6 +14,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
 
     using OnlineGames.Data.Common;
     using OnlineGames.Data.Models;
+    using OnlineGames.Services.AiPortal.Battles;
     using OnlineGames.Services.AiPortal.Uploads;
     using OnlineGames.Services.AiPortal.Uploads.LibraryValidators;
     using OnlineGames.Web.AiPortal.Infrastructure;
@@ -27,13 +28,24 @@ namespace OnlineGames.Web.AiPortal.Controllers
 
         private readonly IDbRepository<Upload> uploadRepository;
 
+        private readonly IDbRepository<Battle> battlesRepository;
+
         private readonly IUploadFileValidator uploadFileValidator;
 
-        public UploadController(IDbRepository<Team> teamsRepository, IDbRepository<Upload> uploadRepository, IUploadFileValidator uploadFileValidator)
+        private readonly IBattlesGenerator battlesGenerator;
+
+        public UploadController(
+            IDbRepository<Team> teamsRepository,
+            IDbRepository<Upload> uploadRepository,
+            IDbRepository<Battle> battlesRepository,
+            IUploadFileValidator uploadFileValidator,
+            IBattlesGenerator battlesGenerator)
         {
             this.teamsRepository = teamsRepository;
             this.uploadRepository = uploadRepository;
+            this.battlesRepository = battlesRepository;
             this.uploadFileValidator = uploadFileValidator;
+            this.battlesGenerator = battlesGenerator;
         }
 
         [HttpGet]
@@ -75,37 +87,33 @@ namespace OnlineGames.Web.AiPortal.Controllers
             }
 
             var libraryValidatorClassName = teamQuery.Select(x => x.Competition.LibraryValidatorClassName).FirstOrDefault();
-            var libraryValidator = libraryValidatorClassName != null
-                                       ? Activator.CreateInstance(
-                                           typeof(ILibraryValidator).Assembly.FullName,
-                                           libraryValidatorClassName).Unwrap() as ILibraryValidator
-                                       : null;
+            var libraryValidator = this.uploadFileValidator.CreateLibraryValidator(libraryValidatorClassName);
             var validateFileResult = this.uploadFileValidator.ValidateFile(
                 model.AiFile.FileName,
                 model.AiFile.ContentLength,
                 model.AiFile.InputStream,
                 libraryValidator);
+
             if (!validateFileResult.IsValid)
             {
                 this.ViewBag.Error = validateFileResult.Error;
                 return this.View(team);
             }
-            else
-            {
-                // Save in the database
-                var upload = new Upload
-                                 {
-                                     TeamId = team.Id,
-                                     FileContents = validateFileResult.FileContent,
-                                     FileName = model.AiFile.FileName
-                                 };
-                this.uploadRepository.Add(upload);
-                this.uploadRepository.Save();
 
-                // TODO: Initiate AI battles
-                this.TempData["Info"] = "File uploaded successfully!";
-                return this.RedirectToAction("Info", "Teams", new { id = team.Id });
-            }
+            // Save in the database
+            var upload = new Upload
+                             {
+                                 TeamId = team.Id,
+                                 FileContents = validateFileResult.FileContent,
+                                 FileName = model.AiFile.FileName
+                             };
+            this.uploadRepository.Add(upload);
+            this.uploadRepository.Save();
+
+            this.battlesGenerator.RestartBattlesFor(this.battlesRepository, team.Id);
+
+            this.TempData["Info"] = "File uploaded successfully!";
+            return this.RedirectToAction("Info", "Teams", new { id = team.Id });
         }
 
         [HttpGet]
@@ -132,7 +140,9 @@ namespace OnlineGames.Web.AiPortal.Controllers
             if (!upload.TeamMembers.Contains(this.User.Identity.Name, StringComparer.InvariantCultureIgnoreCase)
                 && !this.User.IsAdmin())
             {
-                return new HttpUnauthorizedResult("You do not have permissions to download this file!");
+                return new HttpStatusCodeResult(
+                    HttpStatusCode.Forbidden,
+                    "You do not have permissions to download this file!");
             }
 
             return this.File(upload.FileContents, "application/x-msdownload", $"{upload.FileName}_{upload.CreatedOn.ToLocalTime()}.dll");

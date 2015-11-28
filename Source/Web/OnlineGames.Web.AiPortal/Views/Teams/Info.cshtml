@@ -41,7 +41,7 @@
                 <td>@upload.CreatedOn</td>
                 @if (User.IsAdmin() || currentUserIsPartOfTheTeam)
                 {
-                    <th><a href="/Upload/Download/@upload.Id"><i class="glyphicon glyphicon-download"></i></a></th>
+                    <th><a href="/Upload/Download/@upload.Id"><i class="glyphicon glyphicon-download" title="Download"></i></a></th>
                 }
             </tr>
         }
