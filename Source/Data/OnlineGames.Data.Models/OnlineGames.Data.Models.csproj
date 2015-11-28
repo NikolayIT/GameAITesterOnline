@@ -58,6 +58,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Battle.cs" />
+    <Compile Include="BattleGameResult.cs" />
+    <Compile Include="BattleGameWinner.cs" />
     <Compile Include="Competition.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="Upload.cs" />
