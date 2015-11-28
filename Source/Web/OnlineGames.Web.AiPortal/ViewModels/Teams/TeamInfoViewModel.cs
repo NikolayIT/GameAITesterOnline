@@ -21,5 +21,7 @@ namespace OnlineGames.Web.AiPortal.ViewModels.Teams
         public IEnumerable<TeamMemberViewModel> TeamMembers { get; set; }
 
         public IEnumerable<UploadViewModel> Uploads { get; set; }
+
+        public IEnumerable<TeamBattleViewModel> Battles { get; set; }
     }
 }

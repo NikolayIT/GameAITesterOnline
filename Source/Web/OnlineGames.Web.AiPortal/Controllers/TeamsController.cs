@@ -6,6 +6,7 @@
 namespace OnlineGames.Web.AiPortal.Controllers
 {
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -117,6 +118,38 @@ namespace OnlineGames.Web.AiPortal.Controllers
         {
             var teamInfo =
                 this.teamsRepository.All().Where(x => x.Id == id).ProjectTo<TeamInfoViewModel>().FirstOrDefault();
+            if (teamInfo == null)
+            {
+                return this.HttpNotFound("Team not found!");
+            }
+
+            teamInfo.Battles =
+                this.battlesRepository.All()
+                    .Where(x => x.FirstTeamId == id || x.SecondTeamId == id)
+                    .Select(
+                        x =>
+                        new TeamBattleViewModel
+                            {
+                                Id = x.Id,
+                                Finished = x.BattleFinished,
+                                OpponentTeam =
+                                    x.FirstTeamId == id ? x.SecondTeam.Name : x.FirstTeam.Name,
+                                TeamWins =
+                                    x.BattleGameResults.Count(
+                                        game =>
+                                        game.BattleGameWinner
+                                        == (x.FirstTeamId == id
+                                                ? BattleGameWinner.First
+                                                : BattleGameWinner.Second)),
+                                OpponentWins =
+                                    x.BattleGameResults.Count(
+                                        game =>
+                                        game.BattleGameWinner
+                                        == (x.FirstTeamId == id
+                                                ? BattleGameWinner.Second
+                                                : BattleGameWinner.First)),
+                            });
+
             return this.View(teamInfo);
         }
 

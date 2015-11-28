@@ -31,7 +31,10 @@
             <th>#</th>
             <th>File name</th>
             <th>Uploaded on</th>
-            @if (User.IsAdmin() || currentUserIsPartOfTheTeam) { <th>Download</th> }
+            @if (User.IsAdmin() || currentUserIsPartOfTheTeam)
+            {
+                <th>Download</th>
+            }
         </tr>
         @foreach (var upload in Model.Uploads.OrderByDescending(x => x.Id))
         {
@@ -50,4 +53,31 @@
 else
 {
     <p>No uploads for this team :(</p>
+}
+
+<h2>Battles</h2>
+@if (Model.Battles.Any())
+{
+    <p>Only the last uploaded file will be used for AI battles.</p>
+    <table class="table table-hover table-striped">
+        <tr>
+            <th>Opponent</th>
+            <th>Team points</th>
+            <th>Opponent points</th>
+            <th>Is finished</th>
+        </tr>
+        @foreach (var upload in Model.Battles.OrderBy(x => x.OpponentTeam))
+        {
+            <tr>
+                <td>@upload.OpponentTeam</td>
+                <td>@upload.TeamWins</td>
+                <td>@upload.OpponentWins</td>
+                <td>@upload.Finished</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>No battles :(</p>
 }

@@ -198,6 +198,7 @@
     <Compile Include="ViewModels\Competitions\CompetitionViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexCompetitionViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Teams\TeamBattleViewModel.cs" />
     <Compile Include="ViewModels\Teams\CreateTeamViewModel.cs" />
     <Compile Include="ViewModels\Teams\TeamInfoViewModel.cs" />
     <Compile Include="ViewModels\Teams\TeamMemberViewModel.cs" />
