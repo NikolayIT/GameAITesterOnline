@@ -56,5 +56,13 @@ namespace OnlineGames.Web.AiPortal.Controllers
             this.TempData["Info"] = $"{newBattles} new battles created successfully!";
             return this.RedirectToAction(nameof(this.Info), new { id });
         }
+
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public ActionResult RestartBattles(int id)
+        {
+            var restartedBattles = this.battlesGenerator.RestartBattlesForCompetition(this.battlesRepository, id);
+            this.TempData["Info"] = $"{restartedBattles} battles restarted successfully!";
+            return this.RedirectToAction(nameof(this.Info), new { id });
+        }
     }
 }

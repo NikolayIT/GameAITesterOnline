@@ -40,7 +40,23 @@ namespace OnlineGames.Services.AiPortal.Battles
             return newBattles;
         }
 
-        public void RestartBattlesFor(IDbRepository<Battle> battlesRepository, int teamId)
+        public int RestartBattlesForCompetition(IDbRepository<Battle> battlesRepository, int competitionId)
+        {
+            var battlesForRestarting =
+                battlesRepository.All()
+                    .Where(
+                        x => x.FirstTeam.CompetitionId == competitionId || x.SecondTeam.CompetitionId == competitionId)
+                    .ToList();
+            foreach (var battle in battlesForRestarting)
+            {
+                battle.IsFinished = false;
+            }
+
+            battlesRepository.Save();
+            return battlesForRestarting.Count;
+        }
+
+        public void RestartBattlesForTeam(IDbRepository<Battle> battlesRepository, int teamId)
         {
             var battlesForTeam = battlesRepository.All().Where(x => x.FirstTeamId == teamId || x.SecondTeamId == teamId);
             foreach (var battle in battlesForTeam)

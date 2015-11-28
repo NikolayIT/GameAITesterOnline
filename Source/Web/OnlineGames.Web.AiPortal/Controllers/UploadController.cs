@@ -110,7 +110,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
             this.uploadRepository.Add(upload);
             this.uploadRepository.Save();
 
-            this.battlesGenerator.RestartBattlesFor(this.battlesRepository, team.Id);
+            this.battlesGenerator.RestartBattlesForTeam(this.battlesRepository, team.Id);
 
             this.TempData["Info"] = "File uploaded successfully!";
             return this.RedirectToAction("Info", "Teams", new { id = team.Id });
