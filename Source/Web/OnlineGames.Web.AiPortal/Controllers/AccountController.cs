@@ -1,4 +1,9 @@
-﻿namespace OnlineGames.Web.AiPortal.Controllers
+﻿// <copyright file="AccountController.cs" company="Nikolay Kostov (Nikolay.IT)">
+// Copyright (c) Nikolay Kostov (Nikolay.IT). All Rights Reserved.
+// Licensed under the MIT License, Version 2.0. See LICENSE in the project root for license information.
+// </copyright>
+
+namespace OnlineGames.Web.AiPortal.Controllers
 {
     using System;
     using System.Linq;
@@ -49,10 +54,10 @@
                 return this.View(model);
             }
 
-            var dbUser = this.usersRepository.All().FirstOrDefault(x => x.UserName == remoteResult.UserName);
-            if (dbUser == null)
+            var databaseUser = this.usersRepository.All().FirstOrDefault(x => x.UserName == remoteResult.UserName);
+            if (databaseUser == null)
             {
-                dbUser = new User
+                databaseUser = new User
                              {
                                  UserName = remoteResult.UserName,
                                  AvatarUrl = remoteResult.SmallAvatarUrl,
@@ -62,15 +67,15 @@
                 {
                     var adminRole =
                         this.rolesRepository.All().FirstOrDefault(x => x.Name == GlobalConstants.AdministratorRoleName);
-                    dbUser.Roles.Add(adminRole);
+                    databaseUser.Roles.Add(adminRole);
                 }
 
-                this.usersRepository.Add(dbUser);
+                this.usersRepository.Add(databaseUser);
                 this.usersRepository.Save();
             }
 
-            var roles = dbUser.Roles.Select(x => x.Name).ToList();
-            var userDataObject = new AiPortalUserData(dbUser.UserName, roles);
+            var roles = databaseUser.Roles.Select(x => x.Name).ToList();
+            var userDataObject = new AiPortalUserData(databaseUser.UserName, roles);
 
             var userDataAsString = JsonConvert.SerializeObject(userDataObject);
             var authTicket = new FormsAuthenticationTicket(
@@ -81,8 +86,8 @@
                 false,
                 userDataAsString);
             var encTicket = FormsAuthentication.Encrypt(authTicket);
-            var faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
-            this.Response.Cookies.Add(faCookie);
+            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
+            this.Response.Cookies.Add(cookie);
 
             return this.RedirectToLocal(returnUrl);
         }

@@ -8,8 +8,8 @@
       "allowCommonHungarianPrefixes": true
     },
     "documentationRules": {
-      "companyName": "Nikolay.IT",
-      "copyrightText": "Copyright (c) {companyName}. All rights reserved."
+      "companyName": "Nikolay Kostov (Nikolay.IT)",
+      "copyrightText": "Copyright (c) {companyName}. All Rights Reserved.\r\nLicensed under the MIT License, Version 2.0. See LICENSE in the project root for license information."
     }
   }
 }
