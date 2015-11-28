@@ -25,8 +25,8 @@ namespace OnlineGames.Data.Migrations
                         DeletedOn = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Teams", t => t.FirstTeamId, cascadeDelete: true)
-                .ForeignKey("dbo.Teams", t => t.SecondTeamId, cascadeDelete: true)
+                .ForeignKey("dbo.Teams", t => t.FirstTeamId, cascadeDelete: false)
+                .ForeignKey("dbo.Teams", t => t.SecondTeamId, cascadeDelete: false)
                 .Index(t => t.FirstTeamId)
                 .Index(t => t.SecondTeamId)
                 .Index(t => t.IsDeleted);
