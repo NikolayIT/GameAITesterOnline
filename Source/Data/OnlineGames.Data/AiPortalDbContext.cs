@@ -29,6 +29,8 @@ namespace OnlineGames.Data
 
         public DbSet<Upload> Uploads { get; set; }
 
+        public DbSet<Battle> Battles { get; set; }
+
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();

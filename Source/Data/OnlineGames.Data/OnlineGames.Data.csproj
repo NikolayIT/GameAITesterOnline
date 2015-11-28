@@ -67,9 +67,9 @@
     <Compile Include="Migrations\201511232031160_FileUploads.Designer.cs">
       <DependentUpon>201511232031160_FileUploads.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201511281917526_Battles.cs" />
-    <Compile Include="Migrations\201511281917526_Battles.Designer.cs">
-      <DependentUpon>201511281917526_Battles.cs</DependentUpon>
+    <Compile Include="Migrations\201511281922138_Battles.cs" />
+    <Compile Include="Migrations\201511281922138_Battles.Designer.cs">
+      <DependentUpon>201511281922138_Battles.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -99,8 +99,8 @@
     <EmbeddedResource Include="Migrations\201511232031160_FileUploads.resx">
       <DependentUpon>201511232031160_FileUploads.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511281917526_Battles.resx">
-      <DependentUpon>201511281917526_Battles.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201511281922138_Battles.resx">
+      <DependentUpon>201511281922138_Battles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
