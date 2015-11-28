@@ -73,23 +73,23 @@ else
             <th>Comment</th>
             <th>Last change</th>
         </tr>
-        @foreach (var upload in Model.Battles.OrderBy(x => x.OpponentTeam))
+        @foreach (var battle in Model.Battles.OrderBy(x => x.OpponentTeam))
         {
             <tr>
-                <td><a href="/Teams/Info/@upload.OpponentTeamId">@upload.OpponentTeam</a></td>
-                <td>@upload.TeamWins</td>
-                <td>@upload.OpponentWins</td>
+                <td><a href="/Teams/Info/@battle.OpponentTeamId">@battle.OpponentTeam</a></td>
+                <td>@battle.TeamWins</td>
+                <td>@battle.OpponentWins</td>
                 <td>
-                    @if (!upload.Finished)
+                    @if (!battle.IsFinished)
                     {
                         <span>Battle is not finished, yet.</span>
                     }
                     else
                     {
-                        <span>@upload.Comment</span>
+                        <span>@battle.Comment</span>
                     }
                 </td>
-                <td>@upload.ModifiedOn</td>
+                <td>@battle.ModifiedOn</td>
             </tr>
         }
     </table>

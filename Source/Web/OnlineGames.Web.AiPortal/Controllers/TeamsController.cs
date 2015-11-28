@@ -131,8 +131,9 @@ namespace OnlineGames.Web.AiPortal.Controllers
                         new TeamBattleViewModel
                             {
                                 Id = x.Id,
-                                Finished = x.BattleFinished,
+                                IsFinished = x.IsFinished,
                                 ModifiedOn = x.ModifiedOn,
+                                Comment = x.Comment,
                                 OpponentTeam = x.FirstTeamId == id ? x.SecondTeam.Name : x.FirstTeam.Name,
                                 OpponentTeamId = x.FirstTeamId == id ? x.SecondTeamId : x.FirstTeamId,
                                 TeamWins =

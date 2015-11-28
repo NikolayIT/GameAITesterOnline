@@ -45,7 +45,7 @@ namespace OnlineGames.Services.AiPortal.Battles
             var battlesForTeam = battlesRepository.All().Where(x => x.FirstTeamId == teamId || x.SecondTeamId == teamId);
             foreach (var battle in battlesForTeam)
             {
-                battle.BattleFinished = false;
+                battle.IsFinished = false;
             }
 
             battlesRepository.Save();

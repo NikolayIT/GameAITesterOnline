@@ -21,6 +21,9 @@ namespace OnlineGames.Data.Models
 
         public int CompetitionId { get; set; }
 
+        // TODO: Always update this cache value
+        public int Points { get; set; }
+
         public virtual Competition Competition { get; set; }
 
         public virtual ICollection<TeamMember> TeamMembers { get; set; }

@@ -15,7 +15,7 @@ namespace OnlineGames.Web.AiPortal.ViewModels.Teams
 
         public string OpponentTeam { get; set; }
 
-        public bool Finished { get; set; }
+        public bool IsFinished { get; set; }
 
         public int TeamWins { get; set; }
 

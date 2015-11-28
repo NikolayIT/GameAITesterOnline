@@ -26,8 +26,9 @@ namespace OnlineGames.Data.Models
         public Team SecondTeam { get; set; }
 
         [DefaultValue(false)]
-        //// TODO: Rename to IsFinished
-        public bool BattleFinished { get; set; }
+        public bool IsFinished { get; set; }
+
+        public string Comment { get; set; }
 
         public virtual ICollection<BattleGameResult> BattleGameResults { get; set; }
     }

@@ -1,4 +1,4 @@
-﻿// <copyright file="201511281922138_Battles.cs" company="Nikolay Kostov (Nikolay.IT)">
+﻿// <copyright file="201511282136457_Battles.cs" company="Nikolay Kostov (Nikolay.IT)">
 // Copyright (c) Nikolay Kostov (Nikolay.IT). All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 // </copyright>
@@ -18,7 +18,8 @@ namespace OnlineGames.Data.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         FirstTeamId = c.Int(nullable: false),
                         SecondTeamId = c.Int(nullable: false),
-                        BattleFinished = c.Boolean(nullable: false),
+                        IsFinished = c.Boolean(nullable: false),
+                        Comment = c.String(),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),
                         IsDeleted = c.Boolean(nullable: false),
@@ -50,6 +51,7 @@ namespace OnlineGames.Data.Migrations
                 .Index(t => t.IsDeleted);
 
             this.AddColumn("dbo.Competitions", "GamesToPlayForEachBattle", c => c.Int(nullable: false));
+            this.AddColumn("dbo.Teams", "Points", c => c.Int(nullable: false));
         }
 
         public override void Down()
@@ -62,6 +64,7 @@ namespace OnlineGames.Data.Migrations
             this.DropIndex("dbo.Battles", new[] { "IsDeleted" });
             this.DropIndex("dbo.Battles", new[] { "SecondTeamId" });
             this.DropIndex("dbo.Battles", new[] { "FirstTeamId" });
+            this.DropColumn("dbo.Teams", "Points");
             this.DropColumn("dbo.Competitions", "GamesToPlayForEachBattle");
             this.DropTable("dbo.BattleGameResults");
             this.DropTable("dbo.Battles");
