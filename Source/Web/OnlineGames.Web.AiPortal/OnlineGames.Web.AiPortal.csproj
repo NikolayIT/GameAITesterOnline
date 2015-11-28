@@ -254,6 +254,7 @@
     <Content Include="Views\Teams\Info.cshtml" />
     <Content Include="Views\Competitions\Info.cshtml" />
     <Content Include="Views\Upload\Index.cshtml" />
+    <None Include="Views\Competitions\CreateBattles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

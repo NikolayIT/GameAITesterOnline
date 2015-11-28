@@ -20,7 +20,6 @@ namespace OnlineGames.Services.AiPortal.Uploads
             Stream inputStream,
             ILibraryValidator libraryValidator)
         {
-            var errors = new List<string>();
             if (!fileName.EndsWith(".dll"))
             {
                 return new UploadFileValidatorResult("Only .dll files are supported.");

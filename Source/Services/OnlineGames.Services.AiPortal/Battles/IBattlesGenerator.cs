@@ -10,6 +10,6 @@ namespace OnlineGames.Services.AiPortal.Battles
 
     public interface IBattlesGenerator
     {
-        void GenerateBattles(IDbRepository<Team> teamsRepository, IDbRepository<Battle> battlesRepository, int competitionId);
+        int GenerateBattles(IDbRepository<Team> teamsRepository, IDbRepository<Battle> battlesRepository, int competitionId);
     }
 }

@@ -13,6 +13,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
 
     using OnlineGames.Data.Common;
     using OnlineGames.Data.Models;
+    using OnlineGames.Services.AiPortal.Battles;
     using OnlineGames.Web.AiPortal.ViewModels.Teams;
 
     public class TeamsController : BaseController
@@ -23,14 +24,22 @@ namespace OnlineGames.Web.AiPortal.Controllers
 
         private readonly IDbRepository<User> usersRepository;
 
+        private readonly IDbRepository<Battle> battlesRepository;
+
+        private readonly IBattlesGenerator battlesGenerator;
+
         public TeamsController(
             IDbRepository<Team> teamsRepository,
             IDbRepository<Competition> competitionsRepository,
-            IDbRepository<User> usersRepository)
+            IDbRepository<User> usersRepository,
+            IDbRepository<Battle> battlesRepository,
+            IBattlesGenerator battlesGenerator)
         {
             this.teamsRepository = teamsRepository;
             this.competitionsRepository = competitionsRepository;
             this.usersRepository = usersRepository;
+            this.battlesRepository = battlesRepository;
+            this.battlesGenerator = battlesGenerator;
         }
 
         [HttpGet]
@@ -94,6 +103,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
 
                 this.teamsRepository.Add(team);
                 this.teamsRepository.Save();
+                this.battlesGenerator.GenerateBattles(this.teamsRepository, this.battlesRepository, model.CompetitionId);
                 return this.RedirectToAction(nameof(this.Info), new { id = team.Id });
             }
             else

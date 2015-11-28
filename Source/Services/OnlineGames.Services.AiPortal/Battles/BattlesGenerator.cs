@@ -12,9 +12,10 @@ namespace OnlineGames.Services.AiPortal.Battles
 
     public class BattlesGenerator : IBattlesGenerator
     {
-        public void GenerateBattles(IDbRepository<Team> teamsRepository, IDbRepository<Battle> battlesRepository, int competitionId)
+        public int GenerateBattles(IDbRepository<Team> teamsRepository, IDbRepository<Battle> battlesRepository, int competitionId)
         {
             var teams = teamsRepository.All().Where(x => x.CompetitionId == competitionId).Select(x => new { x.Id }).ToList();
+            var newBattles = 0;
             for (var i = 0; i < teams.Count; i++)
             {
                 for (int j = i + 1; j < teams.Count; j++)
@@ -30,11 +31,13 @@ namespace OnlineGames.Services.AiPortal.Battles
                         continue;
                     }
 
+                    newBattles++;
                     battlesRepository.Add(new Battle { FirstTeamId = firstTeam.Id, SecondTeamId = secondTeam.Id });
                 }
             }
 
             battlesRepository.Save();
+            return newBattles;
         }
     }
 }

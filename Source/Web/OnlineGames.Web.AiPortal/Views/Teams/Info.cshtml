@@ -1,6 +1,7 @@
 ﻿@using OnlineGames.Web.AiPortal.Infrastructure
 @model OnlineGames.Web.AiPortal.ViewModels.Teams.TeamInfoViewModel
 @{
+    var currentUserIsPartOfTheTeam = Model.TeamMembers.Any(x => string.Equals(x.UserName, User.Identity.Name, StringComparison.OrdinalIgnoreCase));
     ViewBag.Title = $"Team {Model.Name}";
 }
 
@@ -15,7 +16,7 @@
         </li>
     }
 </ul>
-@if (Model.TeamMembers.Any(x => string.Equals(x.UserName, User.Identity.Name, StringComparison.OrdinalIgnoreCase)))
+@if (currentUserIsPartOfTheTeam)
 {
     <hr />
     <a href="/Upload/Index/@Model.Id" class="btn btn-success">Upload AI Library</a>
@@ -30,7 +31,7 @@
             <th>#</th>
             <th>File name</th>
             <th>Uploaded on</th>
-            @if (User.IsAdmin() || Model.TeamMembers.Any(x => x.UserName == User.Identity.Name)) { <th>Download</th> }
+            @if (User.IsAdmin() || currentUserIsPartOfTheTeam) { <th>Download</th> }
         </tr>
         @foreach (var upload in Model.Uploads.OrderByDescending(x => x.Id))
         {
@@ -38,7 +39,7 @@
                 <td>@upload.Id</td>
                 <td>@upload.FileName</td>
                 <td>@upload.CreatedOn</td>
-                @if (User.IsAdmin() || Model.TeamMembers.Any(x => x.UserName == User.Identity.Name))
+                @if (User.IsAdmin() || currentUserIsPartOfTheTeam)
                 {
                     <th><a href="/Upload/Download/@upload.Id"><i class="glyphicon glyphicon-download"></i></a></th>
                 }

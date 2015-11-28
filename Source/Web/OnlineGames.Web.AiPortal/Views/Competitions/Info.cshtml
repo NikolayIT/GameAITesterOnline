@@ -1,10 +1,17 @@
-﻿@model OnlineGames.Web.AiPortal.ViewModels.Competitions.CompetitionViewModel
+﻿@using OnlineGames.Web.AiPortal.Infrastructure
+@model OnlineGames.Web.AiPortal.ViewModels.Competitions.CompetitionViewModel
 @{
     ViewBag.Title = Model.Name;
     var position = 0;
 }
 
-<h1>@ViewBag.Title (@Model.Teams.Count() teams)</h1>
+<h1>
+    @ViewBag.Title (@Model.Teams.Count() teams)
+    @if (User.IsAdmin())
+    {
+        <a href="/Competitions/CreateBattles/@Model.Id" class="btn btn-success">Create battles</a>
+    }
+</h1>
 <hr/>
 @Html.Raw(Model.Description)
 @foreach (var team in Model.Teams.OrderByDescending(x => x.Points).ThenBy(x => x.Id))

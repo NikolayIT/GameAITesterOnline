@@ -59,7 +59,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
         [HttpPost]
         public ActionResult Index(FileUploadInputModel model)
         {
-            // TODO: 12 hours restriction
+            // TODO: 6/12 hours restriction
             // TODO: Replace this.User.Identity.Name with identity provider for easier unit testing
             var teamQuery =
                 this.teamsRepository.All()
