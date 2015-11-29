@@ -71,7 +71,7 @@ namespace OnlineGames.Workers.BattlesSimulator
 
                 try
                 {
-                    this.ProcessBattle(battle);
+                    this.ProcessBattle(data, battle);
                 }
                 catch (Exception exception)
                 {
@@ -100,14 +100,89 @@ namespace OnlineGames.Workers.BattlesSimulator
             this.stopping = true;
         }
 
-        private void ProcessBattle(Battle battle)
+        private void ProcessBattle(AiPortalDbContext data, Battle battle)
         {
-            //// TODO: Update team points (multithreaded?)
-            battle.IsFinished = true;
-            battle.Comment = "Ready";
+            this.logger.InfoFormat("Processing battle №{0} started.", battle.Id);
 
-            //// TODO: Add game simulations
+            battle.IsFinished = true;
             battle.BattleGameResults.Clear();
+
+            var firstUpload = battle.FirstTeam.Uploads.OrderByDescending(x => x.Id).FirstOrDefault();
+            var secondUpload = battle.SecondTeam.Uploads.OrderByDescending(x => x.Id).FirstOrDefault();
+
+            if (firstUpload == null && secondUpload == null)
+            {
+                battle.Comment = "Both teams didn't upload any file.";
+            }
+            else if (firstUpload == null)
+            {
+                battle.Comment = $"Team {battle.FirstTeam.Name} didn't upload any file.";
+            }
+            else if (secondUpload == null)
+            {
+                battle.Comment = $"Team {battle.SecondTeam.Name} didn't upload any file.";
+            }
+            else
+            {
+                this.SimulateGames(firstUpload, secondUpload);
+                this.UpdateTeamPoints(data, battle.FirstTeam);
+                this.UpdateTeamPoints(data, battle.SecondTeam);
+                battle.Comment = "Ready";
+            }
+
+            this.logger.InfoFormat("Processing battle №{0} ended.", battle.Id);
+        }
+
+        private void SimulateGames(Upload firstUpload, Upload secondUpload)
+        {
+            //// TODO: Add/return game simulations
+        }
+
+        private void UpdateTeamPoints(AiPortalDbContext data, Team team)
+        {
+            var teamHasUploadedFile = team.Uploads.Any();
+            var battles =
+                data.Battles.Where(x => x.FirstTeamId == team.Id || x.SecondTeamId == team.Id)
+                    .Select(
+                        x =>
+                        new
+                            {
+                                TeamIsFirst = x.FirstTeamId == team.Id,
+                                OpponentHasUploadedFile = x.FirstTeamId == team.Id ? x.SecondTeam.Uploads.Any() : x.FirstTeam.Uploads.Any(),
+                                BattlesWonByTeam = x.BattleGameResults.Count(
+                                    res => res.BattleGameWinner == (x.FirstTeamId == team.Id ? BattleGameWinner.First : BattleGameWinner.Second)),
+                            });
+
+            var points = 0;
+
+            foreach (var battle in battles)
+            {
+                if (teamHasUploadedFile && battle.OpponentHasUploadedFile)
+                {
+                    // Both players have submitted file, so the result from battles will be used
+                    points += battle.BattlesWonByTeam;
+                }
+                else if (teamHasUploadedFile && !battle.OpponentHasUploadedFile)
+                {
+                    // The other player does not have uploaded file and current player has => 1000 - 0
+                    points += 1000;
+                }
+                else if (!teamHasUploadedFile && battle.OpponentHasUploadedFile)
+                {
+                    // The other player has uploaded file and current player hasn't => 0 - 1000
+                    points += 0;
+                }
+                else if (!teamHasUploadedFile && !battle.OpponentHasUploadedFile)
+                {
+                    // Both players hasn't uploaded file => 500 - 500
+                    points += 500;
+                }
+            }
+
+            // TODO: What about multithreading
+            // TODO: Depend on max games when scoring
+            team.Points = points;
+            this.logger.InfoFormat("Points for {0} updated.", team.Name);
         }
     }
 }
