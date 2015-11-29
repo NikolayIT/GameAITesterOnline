@@ -6,6 +6,7 @@
 namespace OnlineGames.Workers.BattlesSimulator.GamesSimulator
 {
     using System;
+    using System.Collections.Generic;
     using System.Reflection;
 
     using OnlineGames.Workers.BattlesSimulator.GamesExecutors;
@@ -37,7 +38,17 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesSimulator
                 return new GamesSimulatorResult($"Could not load the games executor class: {ex}");
             }
 
-            return new GamesSimulatorResult("Simulation not implemented!");
+            IEnumerable<SingleGameResult> gameResults;
+            try
+            {
+                gameResults = gamesExecutor.SimulateGames(firstAssembly, secondAssembly, 1000);
+            }
+            catch (Exception ex)
+            {
+                return new GamesSimulatorResult($"Uncaught exception during game sinulations: {ex}");
+            }
+
+            return new GamesSimulatorResult(gameResults);
         }
 
         private IGamesExecutor CreateGamesExecutor(string fullClassName)

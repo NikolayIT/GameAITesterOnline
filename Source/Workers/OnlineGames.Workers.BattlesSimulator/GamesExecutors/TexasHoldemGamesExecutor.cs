@@ -5,7 +5,17 @@
 
 namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
 {
+    using System.Collections.Generic;
+    using System.Reflection;
+
+    using OnlineGames.Workers.BattlesSimulator.GamesSimulator;
+
     public class TexasHoldemGamesExecutor : IGamesExecutor
     {
+        public IEnumerable<SingleGameResult> SimulateGames(Assembly firstAssembly, Assembly secondAssembly, int count)
+        {
+            var gameResults = new List<SingleGameResult>();
+            return gameResults;
+        }
     }
 }

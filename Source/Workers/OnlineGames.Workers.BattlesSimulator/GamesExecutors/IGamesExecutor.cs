@@ -5,7 +5,13 @@
 
 namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
 {
+    using System.Collections.Generic;
+    using System.Reflection;
+
+    using OnlineGames.Workers.BattlesSimulator.GamesSimulator;
+
     public interface IGamesExecutor
     {
+        IEnumerable<SingleGameResult> SimulateGames(Assembly firstAssembly, Assembly secondAssembly, int count);
     }
 }

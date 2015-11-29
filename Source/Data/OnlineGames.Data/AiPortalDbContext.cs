@@ -31,6 +31,8 @@ namespace OnlineGames.Data
 
         public DbSet<Battle> Battles { get; set; }
 
+        public DbSet<BattleGameResult> BattleGameResults { get; set; }
+
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();

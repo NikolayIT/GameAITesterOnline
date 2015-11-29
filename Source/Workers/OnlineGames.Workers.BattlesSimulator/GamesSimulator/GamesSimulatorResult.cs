@@ -23,12 +23,6 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesSimulator
             this.GameResults = gameResults;
         }
 
-        public GamesSimulatorResult(string comment, IEnumerable<SingleGameResult> gameResults)
-        {
-            this.BattleComment = comment;
-            this.GameResults = gameResults;
-        }
-
         public string BattleComment { get; }
 
         public IEnumerable<SingleGameResult> GameResults { get; }

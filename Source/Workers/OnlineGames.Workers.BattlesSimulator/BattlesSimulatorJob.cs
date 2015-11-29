@@ -77,6 +77,21 @@ namespace OnlineGames.Workers.BattlesSimulator
 
                 try
                 {
+                    battle.IsFinished = true;
+                    foreach (var battleGameResult in battle.BattleGameResults.ToList())
+                    {
+                        data.BattleGameResults.Remove(battleGameResult);
+                    }
+
+                    data.SaveChanges();
+                }
+                catch (Exception exception)
+                {
+                    this.logger.ErrorFormat("Unable to set battle as finished and clear game results to the battle №{0}! Exception: {1}", battle.Id, exception);
+                }
+
+                try
+                {
                     this.ProcessBattle(data, battle);
                 }
                 catch (Exception exception)
@@ -109,9 +124,6 @@ namespace OnlineGames.Workers.BattlesSimulator
         private void ProcessBattle(AiPortalDbContext data, Battle battle)
         {
             this.logger.InfoFormat("Processing battle №{0} started.", battle.Id);
-
-            battle.IsFinished = true;
-            battle.BattleGameResults.Clear();
 
             var firstUpload = battle.FirstTeam.Uploads.OrderByDescending(x => x.Id).FirstOrDefault();
             var secondUpload = battle.SecondTeam.Uploads.OrderByDescending(x => x.Id).FirstOrDefault();
