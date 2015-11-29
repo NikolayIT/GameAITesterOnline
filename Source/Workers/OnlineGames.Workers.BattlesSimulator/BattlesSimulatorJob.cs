@@ -77,7 +77,6 @@ namespace OnlineGames.Workers.BattlesSimulator
 
                 try
                 {
-                    battle.IsFinished = true;
                     foreach (var battleGameResult in battle.BattleGameResults.ToList())
                     {
                         data.BattleGameResults.Remove(battleGameResult);
@@ -87,12 +86,13 @@ namespace OnlineGames.Workers.BattlesSimulator
                 }
                 catch (Exception exception)
                 {
-                    this.logger.ErrorFormat("Unable to set battle as finished and clear game results to the battle №{0}! Exception: {1}", battle.Id, exception);
+                    this.logger.ErrorFormat("Unable to clear game results to the battle №{0}! Exception: {1}", battle.Id, exception);
                 }
 
                 try
                 {
                     this.ProcessBattle(data, battle);
+                    battle.IsFinished = true;
                 }
                 catch (Exception exception)
                 {

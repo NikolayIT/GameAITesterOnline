@@ -77,6 +77,7 @@
     <Compile Include="BattlesSimulatorServiceInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="GamesExecutors\BaseGamesExecutor.cs" />
     <Compile Include="GamesExecutors\GameSimulationException.cs" />
     <Compile Include="GamesExecutors\IGamesExecutor.cs" />
     <Compile Include="GamesExecutors\SantaseGamesExecutor.cs" />
