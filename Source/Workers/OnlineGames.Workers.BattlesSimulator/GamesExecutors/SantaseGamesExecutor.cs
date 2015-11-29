@@ -6,6 +6,7 @@
 namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
 {
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Reflection;
 
     using OnlineGames.Data.Models;
@@ -29,9 +30,12 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
             {
                 var game = new SantaseGame(firstPlayer, secondPlayer);
                 var firstToPlay = i % 2 == 0 ? PlayerPosition.FirstPlayer : PlayerPosition.SecondPlayer;
-                var gameWinner = game.Start(firstToPlay);
 
-                var report = $"First: {firstToPlay}; Result: {game.FirstPlayerTotalPoints} - {game.SecondPlayerTotalPoints} (in {game.RoundsPlayed} rounds)";
+                var stopwatch = Stopwatch.StartNew();
+                var gameWinner = game.Start(firstToPlay);
+                var elapsed = stopwatch.Elapsed;
+
+                var report = $"First: {firstToPlay}; Result: {game.FirstPlayerTotalPoints} - {game.SecondPlayerTotalPoints} (in {game.RoundsPlayed} rounds) Time: {elapsed}";
                 var gameResult =
                     new SingleGameResult(
                         gameWinner == PlayerPosition.FirstPlayer ? BattleGameWinner.First : BattleGameWinner.Second,

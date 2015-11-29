@@ -6,6 +6,7 @@
 namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
 {
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Reflection;
 
     using OnlineGames.Data.Models;
@@ -30,11 +31,13 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
                                ? new TwoPlayersTexasHoldemGame(firstPlayer, secondPlayer)
                                : new TwoPlayersTexasHoldemGame(secondPlayer, firstPlayer);
 
+                var stopwatch = Stopwatch.StartNew();
                 var winner = game.Start();
+                var elapsed = stopwatch.Elapsed;
 
                 var firstToPlay = i % 2 == 0 ? "FirstPlayer" : "SecondPlayer";
                 var winnerAsString = winner.Name == firstPlayer.Name ? "FirstPlayer" : "SecondPlayer";
-                var report = $"First: {firstToPlay}; Winner: {winnerAsString} (in {game.HandsPlayed} hands)";
+                var report = $"First: {firstToPlay}; Winner: {winnerAsString} (in {game.HandsPlayed} hands); Time: {elapsed}";
 
                 var gameResult =
                     new SingleGameResult(
