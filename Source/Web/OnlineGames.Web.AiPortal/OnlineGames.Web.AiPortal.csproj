@@ -179,6 +179,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BattlesController.cs" />
     <Compile Include="Controllers\CompetitionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
@@ -195,6 +196,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginViewModel.cs" />
+    <Compile Include="ViewModels\Battles\BattleGameResultViewModel.cs" />
+    <Compile Include="ViewModels\Battles\BattleInfoViewModel.cs" />
     <Compile Include="ViewModels\Competitions\CompetitionViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexCompetitionViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
@@ -255,6 +258,7 @@
     <Content Include="Views\Teams\Info.cshtml" />
     <Content Include="Views\Competitions\Info.cshtml" />
     <Content Include="Views\Upload\Index.cshtml" />
+    <None Include="Views\Battles\Info.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -291,6 +295,7 @@
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0-beta017\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0-beta017\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

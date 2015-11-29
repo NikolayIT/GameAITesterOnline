@@ -1,0 +1,34 @@
+﻿@model OnlineGames.Web.AiPortal.ViewModels.Battles.BattleInfoViewModel
+
+@{
+    ViewBag.Title = $"Battle №{Model.Id} - {Model.FirstTeamName} vs {Model.SecondTeamName}";
+}
+
+<h1>@ViewBag.Title</h1>
+<hr/>
+<p>@Model.Comment</p>
+<p><strong>Last modified on:</strong> @Model.ModifiedOn</p>
+<hr/>
+<h2>Games</h2>
+@if (Model.BattleGameResults.Any())
+{
+    <table class="table table-hover table-condensed table-bordered table-striped">
+        <tr>
+            <th>Id</th>
+            <th>Winner</th>
+            <th>Info</th>
+        </tr>
+        @foreach (var game in Model.BattleGameResults.OrderBy(x => x.Id))
+        {
+            <tr>
+                <td>@game.Id</td>
+                <td>@game.BattleGameWinner</td>
+                <td>@game.Report</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>No games played.</p>
+}

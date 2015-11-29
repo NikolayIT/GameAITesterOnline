@@ -80,14 +80,16 @@ else
                 <td>@battle.TeamWins</td>
                 <td>@battle.OpponentWins</td>
                 <td>
-                    @if (!battle.IsFinished)
-                    {
-                        <span>Battle is not finished, yet.</span>
-                    }
-                    else
-                    {
-                        <span>@battle.Comment</span>
-                    }
+                    <a href="/Battles/Info/@battle.Id">
+                        @if (!battle.IsFinished)
+                        {
+                            <span>Battle is not finished, yet.</span>
+                        }
+                        else
+                        {
+                            <span>@battle.Comment</span>
+                        }
+                    </a>
                 </td>
                 <td>@battle.ModifiedOn</td>
             </tr>
