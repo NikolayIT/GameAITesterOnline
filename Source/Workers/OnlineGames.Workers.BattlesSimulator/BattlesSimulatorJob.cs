@@ -125,11 +125,11 @@ namespace OnlineGames.Workers.BattlesSimulator
             else
             {
                 this.SimulateGames(firstUpload, secondUpload);
-                this.UpdateTeamPoints(data, battle.FirstTeam);
-                this.UpdateTeamPoints(data, battle.SecondTeam);
                 battle.Comment = "Ready";
             }
 
+            this.UpdateTeamPoints(data, battle.FirstTeam, battle.Id);
+            this.UpdateTeamPoints(data, battle.SecondTeam, battle.Id);
             this.logger.InfoFormat("Processing battle №{0} ended.", battle.Id);
         }
 
@@ -138,8 +138,14 @@ namespace OnlineGames.Workers.BattlesSimulator
             //// TODO: Add/return game simulations
         }
 
-        private void UpdateTeamPoints(AiPortalDbContext data, Team team)
+        private void UpdateTeamPoints(AiPortalDbContext data, Team team, int currentBattleId)
         {
+            if (!data.Battles.Where(x => x.Id != currentBattleId && (x.FirstTeamId == team.Id || x.SecondTeamId == team.Id)).All(x => x.IsFinished))
+            {
+                // Update player points only when all battles are finished
+                return;
+            }
+
             var teamHasUploadedFile = team.Uploads.Any();
             var battles =
                 data.Battles.Where(x => x.FirstTeamId == team.Id || x.SecondTeamId == team.Id)
@@ -160,7 +166,7 @@ namespace OnlineGames.Workers.BattlesSimulator
                 if (teamHasUploadedFile && battle.OpponentHasUploadedFile)
                 {
                     // Both players have submitted file, so the result from battles will be used
-                    points += battle.BattlesWonByTeam;
+                    points += battle.BattlesWonByTeam == 0 ? 500 : battle.BattlesWonByTeam;
                 }
                 else if (teamHasUploadedFile && !battle.OpponentHasUploadedFile)
                 {
@@ -179,7 +185,7 @@ namespace OnlineGames.Workers.BattlesSimulator
                 }
             }
 
-            // TODO: What about multithreading
+            // TODO: What about multithreading?
             // TODO: Depend on max games when scoring
             team.Points = points;
             this.logger.InfoFormat("Points for {0} updated.", team.Name);
