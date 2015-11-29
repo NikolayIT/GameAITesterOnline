@@ -1,0 +1,37 @@
+﻿@model System.Collections.Generic.List<OnlineGames.Web.AiPortal.ViewModels.Battles.BattleSimpleInfoViewModel>
+
+@{
+    ViewBag.Title = "All battles list";
+}
+
+<h1>@ViewBag.Title (Total: @Model.Count; Not finished: @Model.Count(x => !x.IsFinished)</h1>
+@if (Model.Any())
+{
+    <table class="table table-hover table-condensed">
+        <tr>
+            <th>First team</th>
+            <th>First points</th>
+            <th>Second points</th>
+            <th>Second team</th>
+            <th>Commend</th>
+            <th>Finished</th>
+            <th>Modified on <i class="glyphicon glyphicon-arrow-down"></i></th>
+        </tr>
+        @foreach (var battle in Model.OrderByDescending(x => x.ModifiedOn))
+        {
+            <tr>
+                <td><a href="/Teams/Info/@battle.FirstTeamId">@battle.FirstTeamName</a></td>
+                <td>@battle.FirstTeamWins</td>
+                <td>@battle.SecondTeamWins</td>
+                <td><a href="/Teams/Info/@battle.SecondTeamId">@battle.SecondTeamName</a></td>
+                <td><a href="/Battles/Info/@battle.Id">@battle.Comment</a></td>
+                <td>@battle.IsFinished</td>
+                <td>@battle.ModifiedOn</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>No battles.</p>
+}

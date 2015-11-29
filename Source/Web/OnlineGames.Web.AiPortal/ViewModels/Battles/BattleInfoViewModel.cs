@@ -23,6 +23,8 @@ namespace OnlineGames.Web.AiPortal.ViewModels.Battles
 
         public string Comment { get; set; }
 
+        public bool IsFinished { get; set; }
+
         public DateTime? ModifiedOn { get; set; }
 
         public IEnumerable<BattleGameResultViewModel> BattleGameResults { get; set; }

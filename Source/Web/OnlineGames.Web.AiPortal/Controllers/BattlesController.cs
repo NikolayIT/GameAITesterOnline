@@ -10,6 +10,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
 
     using AutoMapper.QueryableExtensions;
 
+    using OnlineGames.Common;
     using OnlineGames.Data.Common;
     using OnlineGames.Data.Models;
     using OnlineGames.Web.AiPortal.ViewModels.Battles;
@@ -31,6 +32,22 @@ namespace OnlineGames.Web.AiPortal.Controllers
                 return this.HttpNotFound("Battle not found!");
             }
 
+            return this.View(model);
+        }
+
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public ActionResult Restart(int id)
+        {
+            var battle = this.battlesRepository.GetById(id);
+            battle.IsFinished = false;
+            this.battlesRepository.Save();
+            this.TempData["Info"] = "Battle restarted.";
+            return this.RedirectToAction(nameof(this.Info), new { id });
+        }
+
+        public ActionResult All()
+        {
+            var model = this.battlesRepository.All().ProjectTo<BattleSimpleInfoViewModel>().ToList();
             return this.View(model);
         }
     }

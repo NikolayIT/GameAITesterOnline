@@ -1,13 +1,21 @@
-﻿@model OnlineGames.Web.AiPortal.ViewModels.Battles.BattleInfoViewModel
+﻿@using OnlineGames.Web.AiPortal.Infrastructure
+@model OnlineGames.Web.AiPortal.ViewModels.Battles.BattleInfoViewModel
 
 @{
     ViewBag.Title = $"Battle №{Model.Id} - {Model.FirstTeamName} vs {Model.SecondTeamName}";
 }
 
-<h1>@ViewBag.Title</h1>
+<h1>
+    @ViewBag.Title
+    @if (User.IsAdmin())
+    {
+        <a href="/Battles/Restart/@Model.Id" class="btn btn-success">Restart</a>
+    }
+</h1>
 <hr/>
 <p>@Model.Comment</p>
 <p><strong>Last modified on:</strong> @Model.ModifiedOn</p>
+<p><strong>Is finished:</strong> @Model.IsFinished</p>
 <hr/>
 <h2>Games</h2>
 @if (Model.BattleGameResults.Any())
