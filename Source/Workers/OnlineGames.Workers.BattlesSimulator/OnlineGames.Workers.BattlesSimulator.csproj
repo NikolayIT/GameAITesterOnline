@@ -77,6 +77,10 @@
     <Compile Include="BattlesSimulatorServiceInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="GamesSimulator\GamesSimulatorResult.cs" />
+    <Compile Include="GamesSimulator\IGamesSimulator.cs" />
+    <Compile Include="GamesSimulator\GamesSimulator.cs" />
+    <Compile Include="GamesSimulator\SingleGameResult.cs" />
     <Compile Include="IJob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -7,18 +7,22 @@ namespace OnlineGames.Workers.BattlesSimulator
 {
     using System;
     using System.Linq;
+    using System.Reflection;
     using System.Threading;
 
     using log4net;
 
     using OnlineGames.Data;
     using OnlineGames.Data.Models;
+    using OnlineGames.Workers.BattlesSimulator.GamesSimulator;
 
     public class BattlesSimulatorJob : IJob
     {
         private readonly ILog logger;
 
         private readonly SynchronizedHashtable processingBattleIds;
+
+        private readonly IGamesSimulator gamesSimulator;
 
         private bool stopping;
 
@@ -31,6 +35,8 @@ namespace OnlineGames.Workers.BattlesSimulator
 
             this.stopping = false;
             this.processingBattleIds = processingBattleIds;
+
+            this.gamesSimulator = new GamesSimulator.GamesSimulator();
 
             this.logger.Info("BattlesSimulatorJob initialized.");
         }
@@ -124,18 +130,26 @@ namespace OnlineGames.Workers.BattlesSimulator
             }
             else
             {
-                this.SimulateGames(firstUpload, secondUpload);
-                battle.Comment = "Ready";
+                var simulationResult = this.gamesSimulator.SimulateGames(
+                    firstUpload.FileContents,
+                    secondUpload.FileContents);
+                foreach (var gameResult in simulationResult.GameResults)
+                {
+                    var battleGameResult = new BattleGameResult
+                                               {
+                                                   BattleId = battle.Id,
+                                                   BattleGameWinner = gameResult.Winner,
+                                                   Report = gameResult.Report
+                                               };
+                    battle.BattleGameResults.Add(battleGameResult);
+                }
+
+                battle.Comment = simulationResult.BattleComment;
             }
 
             this.UpdateTeamPoints(data, battle.FirstTeam, battle.Id);
             this.UpdateTeamPoints(data, battle.SecondTeam, battle.Id);
             this.logger.InfoFormat("Processing battle №{0} ended.", battle.Id);
-        }
-
-        private void SimulateGames(Upload firstUpload, Upload secondUpload)
-        {
-            //// TODO: Add/return game simulations
         }
 
         private void UpdateTeamPoints(AiPortalDbContext data, Team team, int currentBattleId)
