@@ -132,7 +132,8 @@ namespace OnlineGames.Workers.BattlesSimulator
             {
                 var simulationResult = this.gamesSimulator.SimulateGames(
                     firstUpload.FileContents,
-                    secondUpload.FileContents);
+                    secondUpload.FileContents,
+                    battle.FirstTeam.Competition.GamesExecutorClassName);
                 foreach (var gameResult in simulationResult.GameResults)
                 {
                     var battleGameResult = new BattleGameResult

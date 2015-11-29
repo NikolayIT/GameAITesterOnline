@@ -34,6 +34,8 @@ namespace OnlineGames.Data.Models
 
         public string LibraryValidatorClassName { get; set; }
 
+        public string GamesExecutorClassName { get; set; }
+
         public virtual ICollection<Team> Teams { get; set; }
     }
 }

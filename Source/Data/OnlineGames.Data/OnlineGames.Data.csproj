@@ -71,6 +71,10 @@
     <Compile Include="Migrations\201511282136457_Battles.Designer.cs">
       <DependentUpon>201511282136457_Battles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511291330516_GamesExecutorClassName.cs" />
+    <Compile Include="Migrations\201511291330516_GamesExecutorClassName.Designer.cs">
+      <DependentUpon>201511291330516_GamesExecutorClassName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -101,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511282136457_Battles.resx">
       <DependentUpon>201511282136457_Battles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511291330516_GamesExecutorClassName.resx">
+      <DependentUpon>201511291330516_GamesExecutorClassName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

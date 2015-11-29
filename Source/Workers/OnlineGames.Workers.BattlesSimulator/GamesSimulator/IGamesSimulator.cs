@@ -9,6 +9,6 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesSimulator
 
     public interface IGamesSimulator
     {
-        GamesSimulatorResult SimulateGames(byte[] firstAssemblyAsBytes, byte[] secondAssemblyAsBytes);
+        GamesSimulatorResult SimulateGames(byte[] firstAssemblyAsBytes, byte[] secondAssemblyAsBytes, string gamesExecutorClassName);
     }
 }
