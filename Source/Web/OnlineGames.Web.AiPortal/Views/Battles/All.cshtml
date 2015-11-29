@@ -4,7 +4,7 @@
     ViewBag.Title = "All battles list";
 }
 
-<h1>@ViewBag.Title (Total: @Model.Count; Not finished: @Model.Count(x => !x.IsFinished)</h1>
+<h1>@ViewBag.Title (Total: @Model.Count; Unfinished: @Model.Count(x => !x.IsFinished))</h1>
 @if (Model.Any())
 {
     <table class="table table-hover table-condensed">
@@ -15,7 +15,7 @@
             <th>Second team</th>
             <th>Commend</th>
             <th>Finished</th>
-            <th>Modified on <i class="glyphicon glyphicon-arrow-down"></i></th>
+            <th>Last change <i class="glyphicon glyphicon-arrow-down"></i></th>
         </tr>
         @foreach (var battle in Model.OrderByDescending(x => x.ModifiedOn))
         {
