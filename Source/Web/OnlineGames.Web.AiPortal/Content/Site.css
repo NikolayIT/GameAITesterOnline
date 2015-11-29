@@ -27,3 +27,9 @@ hr {
     margin-top: 12px;
     margin-bottom: 12px;
 }
+
+/* Custom styles */
+.points-cell {
+    font-size: 20px;
+    text-align: center;
+}

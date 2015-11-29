@@ -170,18 +170,18 @@ namespace OnlineGames.Workers.BattlesSimulator
                 }
                 else if (teamHasUploadedFile && !battle.OpponentHasUploadedFile)
                 {
-                    // The other player does not have uploaded file and current player has => 1000 - 0
-                    points += 1000;
+                    // The other player does not have uploaded file and current player has
+                    points += 0;
                 }
                 else if (!teamHasUploadedFile && battle.OpponentHasUploadedFile)
                 {
-                    // The other player has uploaded file and current player hasn't => 0 - 1000
+                    // The other player has uploaded file and current player hasn't
                     points += 0;
                 }
                 else if (!teamHasUploadedFile && !battle.OpponentHasUploadedFile)
                 {
-                    // Both players hasn't uploaded file => 500 - 500
-                    points += 500;
+                    // Both players hasn't uploaded file
+                    points += 0;
                 }
             }
 
