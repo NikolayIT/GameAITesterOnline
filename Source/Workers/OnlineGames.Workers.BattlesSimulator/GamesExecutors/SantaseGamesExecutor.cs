@@ -24,7 +24,7 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
             // TODO: Decorate with time and memory limit
             // TODO: What if someone crashes?
             var firstPlayer = this.LoadPlayer(firstAssembly);
-            var secondPlayer = this.LoadPlayer(firstAssembly);
+            var secondPlayer = this.LoadPlayer(secondAssembly);
 
             var gameResults = new List<SingleGameResult>();
             for (var i = 0; i < count; i++)

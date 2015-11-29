@@ -109,6 +109,16 @@ namespace OnlineGames.Workers.BattlesSimulator
                     this.logger.ErrorFormat("Unable to save changes to the battle №{0}! Exception: {1}", battle.Id, exception);
                 }
 
+                try
+                {
+                    this.UpdateTeamPoints(data, battle.FirstTeam);
+                    this.UpdateTeamPoints(data, battle.SecondTeam);
+                }
+                catch (Exception exception)
+                {
+                    this.logger.ErrorFormat("Unable to update team points! Exception: {0}", exception);
+                }
+
                 // Next line removes the battle from the list. Fixes problem with retesting battles.
                 this.processingBattleIds.Remove(battle.Id);
             }
@@ -160,14 +170,12 @@ namespace OnlineGames.Workers.BattlesSimulator
                 battle.Comment = simulationResult.BattleComment;
             }
 
-            this.UpdateTeamPoints(data, battle.FirstTeam, battle.Id);
-            this.UpdateTeamPoints(data, battle.SecondTeam, battle.Id);
             this.logger.InfoFormat("Processing battle №{0} ended.", battle.Id);
         }
 
-        private void UpdateTeamPoints(AiPortalDbContext data, Team team, int currentBattleId)
+        private void UpdateTeamPoints(AiPortalDbContext data, Team team)
         {
-            if (!data.Battles.Where(x => x.Id != currentBattleId && (x.FirstTeamId == team.Id || x.SecondTeamId == team.Id)).All(x => x.IsFinished))
+            if (!data.Battles.Where(x => x.FirstTeamId == team.Id || x.SecondTeamId == team.Id).All(x => x.IsFinished))
             {
                 // Update player points only when all battles are finished
                 return;
@@ -193,7 +201,7 @@ namespace OnlineGames.Workers.BattlesSimulator
                 if (teamHasUploadedFile && battle.OpponentHasUploadedFile)
                 {
                     // Both players have submitted file, so the result from battles will be used
-                    points += battle.BattlesWonByTeam == 0 ? 500 : battle.BattlesWonByTeam;
+                    points += battle.BattlesWonByTeam;
                 }
                 else if (teamHasUploadedFile && !battle.OpponentHasUploadedFile)
                 {
@@ -216,6 +224,8 @@ namespace OnlineGames.Workers.BattlesSimulator
             // TODO: Depend on max games when scoring
             team.Points = points;
             this.logger.InfoFormat("Points for {0} updated.", team.Name);
+
+            data.SaveChanges();
         }
     }
 }
