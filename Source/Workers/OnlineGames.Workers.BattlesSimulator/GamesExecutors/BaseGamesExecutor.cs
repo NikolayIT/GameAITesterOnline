@@ -29,7 +29,7 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
 
             if (playerClasses.Count == 0)
             {
-                throw new GameSimulationException($"More than one public inheritant of IPlayer found in {assembly.FullName}");
+                throw new GameSimulationException($"No public types that inherit IPlayer (or BasePlayer) found in {assembly.FullName}");
             }
 
             var playerClass = playerClasses[0];

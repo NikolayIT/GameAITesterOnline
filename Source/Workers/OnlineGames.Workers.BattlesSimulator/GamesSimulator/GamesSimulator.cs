@@ -45,7 +45,7 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesSimulator
             }
             catch (Exception ex)
             {
-                return new GamesSimulatorResult($"Uncaught exception during game sinulations: {ex}");
+                return new GamesSimulatorResult($"Uncaught exception during game simulations: {ex}");
             }
 
             return new GamesSimulatorResult(gameResults);
