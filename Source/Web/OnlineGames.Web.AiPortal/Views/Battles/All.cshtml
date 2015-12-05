@@ -17,7 +17,7 @@
             <th>Finished</th>
             <th>Last change <i class="glyphicon glyphicon-arrow-down"></i></th>
         </tr>
-        @foreach (var battle in Model.OrderByDescending(x => x.ModifiedOn))
+        @foreach (var battle in Model.OrderByDescending(x => x.ModifiedOn).ThenBy(x => x.FirstTeamName))
         {
             var rowClass = "";
             if (!battle.IsFinished)
