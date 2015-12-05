@@ -185,6 +185,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
+    <Compile Include="Controllers\UploadsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -209,6 +210,7 @@
     <Compile Include="ViewModels\Teams\TeamMemberViewModel.cs" />
     <Compile Include="ViewModels\Teams\UploadViewModel.cs" />
     <Compile Include="ViewModels\Upload\FileUploadInputModel.cs" />
+    <Compile Include="ViewModels\Upload\UploadInListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -262,6 +264,7 @@
     <Content Include="Views\Upload\Index.cshtml" />
     <Content Include="Views\Battles\All.cshtml" />
     <Content Include="Views\Battles\Info.cshtml" />
+    <Content Include="Views\Uploads\All.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

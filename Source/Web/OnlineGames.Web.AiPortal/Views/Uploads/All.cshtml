@@ -1,0 +1,30 @@
+﻿@model IEnumerable<OnlineGames.Web.AiPortal.ViewModels.Upload.UploadInListViewModel>
+@{
+    ViewBag.Title = "All uploads list";
+}
+
+<h1>@ViewBag.Title (Total: @Model.Count())</h1>
+@if (Model.Any())
+{
+    <table class="table table-hover table-condensed">
+        <tr>
+            <th>№</th>
+            <th>Competition</th>
+            <th>Team name</th>
+            <th>Uploaded on <i class="glyphicon glyphicon-arrow-down"></i></th>
+        </tr>
+        @foreach (var battle in Model.OrderByDescending(x => x.CreatedOn))
+        {
+            <tr>
+                <td>@battle.Id</td>
+                <td>@battle.CompetitionName</td>
+                <td>@battle.TeamName</td>
+                <td>@battle.CreatedOn</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>No uploads.</p>
+}
