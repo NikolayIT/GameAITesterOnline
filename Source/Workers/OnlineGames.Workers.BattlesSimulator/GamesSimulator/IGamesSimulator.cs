@@ -5,8 +5,6 @@
 
 namespace OnlineGames.Workers.BattlesSimulator.GamesSimulator
 {
-    using OnlineGames.Data.Models;
-
     public interface IGamesSimulator
     {
         GamesSimulatorResult SimulateGames(byte[] firstAssemblyAsBytes, byte[] secondAssemblyAsBytes, string gamesExecutorClassName);

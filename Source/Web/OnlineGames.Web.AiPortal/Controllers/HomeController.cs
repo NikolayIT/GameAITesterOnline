@@ -29,13 +29,15 @@ namespace OnlineGames.Web.AiPortal.Controllers
 
         public ActionResult Index()
         {
-            var model = new IndexViewModel();
-            model.ActiveCompetitions =
-                this.competitionsRepository.All().Where(x => x.IsActive).ProjectTo<IndexCompetitionViewModel>();
-            model.CurrentUserTeams =
-                this.teamsRepository.All()
-                    .Where(x => x.TeamMembers.Any(tm => tm.User.UserName == this.User.Identity.Name))
-                    .ProjectTo<TeamInfoViewModel>();
+            var model = new IndexViewModel
+                            {
+                                ActiveCompetitions =
+                                    this.competitionsRepository.All().Where(x => x.IsActive).ProjectTo<IndexCompetitionViewModel>(),
+                                CurrentUserTeams =
+                                    this.teamsRepository.All()
+                                    .Where(x => x.TeamMembers.Any(tm => tm.User.UserName == this.User.Identity.Name))
+                                    .ProjectTo<TeamInfoViewModel>()
+                            };
             return this.View(model);
         }
     }

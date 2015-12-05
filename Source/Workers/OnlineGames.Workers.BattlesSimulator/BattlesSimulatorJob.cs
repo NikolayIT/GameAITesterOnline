@@ -7,7 +7,6 @@ namespace OnlineGames.Workers.BattlesSimulator
 {
     using System;
     using System.Linq;
-    using System.Reflection;
     using System.Threading;
 
     using log4net;

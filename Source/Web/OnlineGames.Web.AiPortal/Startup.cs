@@ -7,6 +7,7 @@ using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(OnlineGames.Web.AiPortal.Startup))]
+
 namespace OnlineGames.Web.AiPortal
 {
     public class Startup

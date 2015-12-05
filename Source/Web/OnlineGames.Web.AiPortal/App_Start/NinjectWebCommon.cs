@@ -7,6 +7,7 @@ using OnlineGames.Web.AiPortal;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
+
 namespace OnlineGames.Web.AiPortal
 {
     using System;

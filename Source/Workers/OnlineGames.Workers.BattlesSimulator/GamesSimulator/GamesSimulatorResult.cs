@@ -7,8 +7,6 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesSimulator
 {
     using System.Collections.Generic;
 
-    using OnlineGames.Data.Models;
-
     public class GamesSimulatorResult
     {
         public GamesSimulatorResult(string comment)

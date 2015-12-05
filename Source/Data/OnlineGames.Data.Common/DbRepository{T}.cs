@@ -25,9 +25,9 @@ namespace OnlineGames.Data.Common
             this.DbSet = this.Context.Set<T>();
         }
 
-        private IDbSet<T> DbSet { get; set; }
+        private IDbSet<T> DbSet { get; }
 
-        private DbContext Context { get; set; }
+        private DbContext Context { get; }
 
         public IQueryable<T> All()
         {

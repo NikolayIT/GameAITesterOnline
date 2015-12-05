@@ -24,7 +24,7 @@ namespace OnlineGames.Services.AiPortal.Uploads
                 return new UploadFileValidatorResult("Only .dll files are supported.");
             }
 
-            if (((contentLength / 1024) / 1024) > 2)
+            if ((contentLength / 1024) / 1024 > 2)
             {
                 return new UploadFileValidatorResult("Files should be less than 2MB.");
             }
