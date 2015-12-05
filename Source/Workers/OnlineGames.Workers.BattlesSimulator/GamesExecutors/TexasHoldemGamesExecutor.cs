@@ -19,10 +19,8 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
     {
         public override IEnumerable<SingleGameResult> SimulateGames(Assembly firstAssembly, Assembly secondAssembly, int count)
         {
-            // TODO: Decorate with time and memory limit
-            // TODO: What if someone crashes?
-            var firstPlayer = this.LoadPlayer<IPlayer>(firstAssembly);
-            var secondPlayer = this.LoadPlayer<IPlayer>(secondAssembly);
+            var firstPlayer = new TexasHoldemPlayerDirector(this.LoadPlayer<IPlayer>(firstAssembly));
+            var secondPlayer = new TexasHoldemPlayerDirector(this.LoadPlayer<IPlayer>(secondAssembly));
 
             var gameResults = new List<SingleGameResult>();
             for (var i = 0; i < count; i++)
@@ -37,7 +35,16 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
 
                 var firstToPlay = i % 2 == 0 ? "FirstPlayer" : "SecondPlayer";
                 var winnerAsString = winner.Name == firstPlayer.Name ? "FirstPlayer" : "SecondPlayer";
-                var report = $"First: {firstToPlay}; Winner: {winnerAsString} (in {game.HandsPlayed} hands); Time: {elapsed}";
+                var report = $"First: {firstToPlay}; Winner: {winnerAsString} ({game.HandsPlayed} hands); Time: {elapsed}; Crashes: {firstPlayer.Crashes} - {secondPlayer.Crashes}; Time limits: {firstPlayer.TimeOuts} - {secondPlayer.Crashes}";
+                if (firstPlayer.FirstCrash != null)
+                {
+                    report += $"; First player first exception: {firstPlayer.FirstCrash}";
+                }
+
+                if (secondPlayer.FirstCrash != null)
+                {
+                    report += $"; Second player first exception: {secondPlayer.FirstCrash}";
+                }
 
                 var gameResult =
                     new SingleGameResult(
