@@ -18,7 +18,11 @@ namespace OnlineGames.Web.AiPortal.ViewModels.Upload
 
         public DateTime CreatedOn { get; set; }
 
+        public string CompetitionId { get; set; }
+
         public string CompetitionName { get; set; }
+
+        public string TeamId { get; set; }
 
         public string TeamName { get; set; }
 
@@ -26,6 +30,7 @@ namespace OnlineGames.Web.AiPortal.ViewModels.Upload
         {
             configuration.CreateMap<Upload, UploadInListViewModel>()
                 .ForMember(x => x.TeamName, opt => opt.MapFrom(x => x.Team.Name))
+                .ForMember(x => x.CompetitionId, opt => opt.MapFrom(x => x.Team.CompetitionId))
                 .ForMember(x => x.CompetitionName, opt => opt.MapFrom(x => x.Team.Competition.Name));
         }
     }
