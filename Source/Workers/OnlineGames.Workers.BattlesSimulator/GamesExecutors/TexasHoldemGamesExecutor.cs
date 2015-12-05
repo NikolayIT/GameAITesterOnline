@@ -35,7 +35,7 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
 
                 var firstToPlay = i % 2 == 0 ? "FirstPlayer" : "SecondPlayer";
                 var winnerAsString = winner.Name == firstPlayer.Name ? "FirstPlayer" : "SecondPlayer";
-                var report = $"First: {firstToPlay}; Winner: {winnerAsString} ({game.HandsPlayed} hands); Time: {elapsed}; Crashes: {firstPlayer.Crashes} - {secondPlayer.Crashes}; Time limits: {firstPlayer.TimeOuts} - {secondPlayer.Crashes}";
+                var report = $"First: {firstToPlay}; Winner: {winnerAsString} ({game.HandsPlayed} hands); Time: {elapsed}; Crashes: {firstPlayer.Crashes} - {secondPlayer.Crashes}; Time limits: {firstPlayer.TimeOuts} - {secondPlayer.TimeOuts}";
                 if (firstPlayer.FirstCrash != null)
                 {
                     report += $"; First player first exception: {firstPlayer.FirstCrash}";

@@ -81,6 +81,7 @@
     <Compile Include="GamesExecutors\GameSimulationException.cs" />
     <Compile Include="GamesExecutors\IGamesExecutor.cs" />
     <Compile Include="GamesExecutors\SantaseGamesExecutor.cs" />
+    <Compile Include="GamesExecutors\SantasePlayerDirector.cs" />
     <Compile Include="GamesExecutors\TexasHoldemGamesExecutor.cs" />
     <Compile Include="GamesExecutors\TexasHoldemPlayerDirector.cs" />
     <Compile Include="GamesSimulator\GamesSimulatorResult.cs" />
