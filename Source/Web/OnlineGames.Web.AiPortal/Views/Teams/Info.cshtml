@@ -31,7 +31,7 @@
 @if (Model.Uploads.Any())
 {
     <p>Only the last uploaded file will be used for AI battles.</p>
-    <table class="table table-hover table-striped table-bordered">
+    <table class="table table-hover table-striped table-bordered table-condensed">
         <tr>
             <th>#</th>
             <th>File name</th>
@@ -75,7 +75,12 @@ else
         </tr>
         @foreach (var battle in Model.Battles.OrderBy(x => x.OpponentTeam))
         {
-            <tr>
+            var rowClass = "";
+            if (!battle.IsFinished)
+            {
+                rowClass = "active";
+            }
+            <tr class="@rowClass">
                 <td><a href="/Teams/Info/@battle.OpponentTeamId">@battle.OpponentTeam</a></td>
                 <td>@battle.TeamWins</td>
                 <td>@battle.OpponentWins</td>
