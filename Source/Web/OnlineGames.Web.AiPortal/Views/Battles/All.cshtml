@@ -19,7 +19,12 @@
         </tr>
         @foreach (var battle in Model.OrderByDescending(x => x.ModifiedOn))
         {
-            <tr>
+            var rowClass = "";
+            if (!battle.IsFinished)
+            {
+                rowClass = "active";
+            }
+            <tr class="@rowClass">
                 <td><a href="/Teams/Info/@battle.FirstTeamId">@battle.FirstTeamName</a></td>
                 <td>@battle.FirstTeamWins</td>
                 <td>@battle.SecondTeamWins</td>

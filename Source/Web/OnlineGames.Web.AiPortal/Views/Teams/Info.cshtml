@@ -13,19 +13,19 @@
     }
 </h1>
 
-<hr/>
+<hr />
 
 <ul class="nav nav-justified">
     @foreach (var teammember in Model.TeamMembers)
     {
         <li class="active">
-            <img src="@teammember.AvatarUrl" alt="@teammember.UserName"/>
+            <img src="@teammember.AvatarUrl" alt="@teammember.UserName" />
             <span class="badge">@teammember.UserName</span>
         </li>
     }
 </ul>
 
-<hr/>
+<hr />
 
 <h2>Uploads</h2>
 @if (Model.Uploads.Any())
@@ -60,7 +60,7 @@ else
     <p>No uploads for this team :(</p>
 }
 
-<hr/>
+<hr />
 
 <h2>Battles</h2>
 @if (Model.Battles.Any())
@@ -100,6 +100,10 @@ else
             </tr>
         }
     </table>
+    <p>
+        <strong>Current sum of points:</strong> @Model.Battles.Sum(x => x.TeamWins)<br />
+        There might be a difference between the official team points and the current sum. This is due to still unfinished battles.
+    </p>
 }
 else
 {

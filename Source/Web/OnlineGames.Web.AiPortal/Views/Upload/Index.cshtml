@@ -1,4 +1,5 @@
-﻿@model OnlineGames.Web.AiPortal.ViewModels.Teams.TeamInfoViewModel
+﻿@using OnlineGames.Web.AiPortal.Controllers
+@model OnlineGames.Web.AiPortal.ViewModels.Teams.TeamInfoViewModel
 @{
     ViewBag.Title = $"Upload AI Library for {Model.Name}";
 }
@@ -10,7 +11,7 @@
         <label for="file">.dll file</label>
         <input class="form-control alert-success" type="file" name="AiFile" id="AiFile"/>
         <p class="help-block">By uploading a new file with your AI all your results will be retested with the new version provided.</p>
-        <p class="help-block">You will not be able to send another file for the next 12 hours.</p>
+        <p class="help-block">You will not be able to send another file for the next @UploadController.MinutesBetweenUploads minutes.</p>
     </div>
     <button type="submit" class="btn btn-success">Submit</button>
     @*<a href="/Teams/Info/@Model.Id" class="btn btn-info">Back to the team's page</a>*@
