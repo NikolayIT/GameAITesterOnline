@@ -23,6 +23,8 @@ namespace OnlineGames.Web.AiPortal.Controllers
     [Authorize]
     public class UploadController : BaseController
     {
+        public const int MinutesBetweenUploads = 60;
+
         private readonly IDbRepository<Team> teamsRepository;
 
         private readonly IDbRepository<Upload> uploadRepository;
@@ -83,6 +85,14 @@ namespace OnlineGames.Web.AiPortal.Controllers
                 return new HttpStatusCodeResult(
                     HttpStatusCode.Forbidden,
                     "You do not have permissions to upload files for this team!");
+            }
+
+            var lastUpload = this.uploadRepository.All().OrderByDescending(x => x.CreatedOn).Select(x => x.CreatedOn).FirstOrDefault();
+            if (DateTime.Now - lastUpload < TimeSpan.FromMinutes(MinutesBetweenUploads))
+            {
+                var tryAgainAfter = Math.Ceiling(MinutesBetweenUploads - (DateTime.Now - lastUpload).TotalMinutes);
+                this.ViewBag.Error = $"Only one upload for every {MinutesBetweenUploads} minutes is allowed. Please try again after {tryAgainAfter:#####} minutes.";
+                return this.View(team);
             }
 
             var libraryValidatorClassName = teamQuery.Select(x => x.Competition.LibraryValidatorClassName).FirstOrDefault();
