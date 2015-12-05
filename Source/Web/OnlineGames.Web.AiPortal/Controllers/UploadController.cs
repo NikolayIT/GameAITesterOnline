@@ -72,7 +72,6 @@ namespace OnlineGames.Web.AiPortal.Controllers
         [HttpPost]
         public ActionResult Index(FileUploadInputModel model)
         {
-            // TODO: 6/12 hours restriction
             // TODO: Replace this.User.Identity.Name with identity provider for easier unit testing
             var teamQuery =
                 this.teamsRepository.All()
@@ -87,7 +86,12 @@ namespace OnlineGames.Web.AiPortal.Controllers
                     "You do not have permissions to upload files for this team!");
             }
 
-            var lastUpload = this.uploadRepository.All().OrderByDescending(x => x.CreatedOn).Select(x => x.CreatedOn).FirstOrDefault();
+            var lastUpload =
+                this.uploadRepository.All()
+                    .Where(x => x.TeamId == model.Id)
+                    .OrderByDescending(x => x.CreatedOn)
+                    .Select(x => x.CreatedOn)
+                    .FirstOrDefault();
             if (DateTime.Now - lastUpload < TimeSpan.FromMinutes(MinutesBetweenUploads))
             {
                 var tryAgainAfter = Math.Ceiling(MinutesBetweenUploads - (DateTime.Now - lastUpload).TotalMinutes);
