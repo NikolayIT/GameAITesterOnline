@@ -64,8 +64,8 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
-    <Reference Include="TexasHoldem.Logic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\TexasHoldemGameEngine.1.0.0\lib\TexasHoldem.Logic.dll</HintPath>
+    <Reference Include="TexasHoldem.Logic, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\TexasHoldemGameEngine.1.1.0\lib\TexasHoldem.Logic.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

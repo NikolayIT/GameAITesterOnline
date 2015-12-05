@@ -23,6 +23,8 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
 
         public string FirstCrash { get; private set; }
 
+        public override string Name { get; } = Guid.NewGuid().ToString();
+
         public override void StartGame(StartGameContext context)
         {
             this.TimeOuts = 0;
