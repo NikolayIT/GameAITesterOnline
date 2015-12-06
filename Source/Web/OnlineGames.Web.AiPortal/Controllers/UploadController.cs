@@ -23,7 +23,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
     [Authorize]
     public class UploadController : BaseController
     {
-        public const int MinutesBetweenUploads = 60;
+        public const int MinutesBetweenUploads = 30;
 
         private readonly IDbRepository<Team> teamsRepository;
 

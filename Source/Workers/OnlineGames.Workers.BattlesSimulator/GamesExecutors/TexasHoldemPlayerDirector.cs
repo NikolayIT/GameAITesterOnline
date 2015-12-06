@@ -49,7 +49,7 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
             {
                 PlayerAction playerAction = null;
                 var completed = ExecuteWithTimeLimit(
-                    TimeSpan.FromMilliseconds(20),
+                    TimeSpan.FromMilliseconds(50),
                     () => playerAction = base.GetTurn(context));
                 if (completed)
                 {
