@@ -30,17 +30,17 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
             this.TimeOuts = 0;
             this.Crashes = 0;
             this.FirstCrash = null;
-            ExecuteWithTimeLimit(TimeSpan.FromMilliseconds(100), () => base.StartGame(context));
+            ExecuteWithTimeLimit(TimeSpan.FromMilliseconds(50), () => base.StartGame(context));
         }
 
         public override void StartRound(StartRoundContext context)
         {
-            ExecuteWithTimeLimit(TimeSpan.FromMilliseconds(100), () => base.StartRound(context));
+            ExecuteWithTimeLimit(TimeSpan.FromMilliseconds(50), () => base.StartRound(context));
         }
 
         public override void StartHand(StartHandContext context)
         {
-            ExecuteWithTimeLimit(TimeSpan.FromMilliseconds(100), () => base.StartHand(context));
+            ExecuteWithTimeLimit(TimeSpan.FromMilliseconds(50), () => base.StartHand(context));
         }
 
         public override PlayerAction GetTurn(GetTurnContext context)
@@ -49,7 +49,7 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
             {
                 PlayerAction playerAction = null;
                 var completed = ExecuteWithTimeLimit(
-                    TimeSpan.FromMilliseconds(50),
+                    TimeSpan.FromMilliseconds(20),
                     () => playerAction = base.GetTurn(context));
                 if (completed)
                 {
@@ -75,17 +75,17 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
 
         public override void EndHand(EndHandContext context)
         {
-            ExecuteWithTimeLimit(TimeSpan.FromMilliseconds(100), () => base.EndHand(context));
+            ExecuteWithTimeLimit(TimeSpan.FromMilliseconds(50), () => base.EndHand(context));
         }
 
         public override void EndRound(EndRoundContext context)
         {
-            ExecuteWithTimeLimit(TimeSpan.FromMilliseconds(100), () => base.EndRound(context));
+            ExecuteWithTimeLimit(TimeSpan.FromMilliseconds(50), () => base.EndRound(context));
         }
 
         public override void EndGame(EndGameContext context)
         {
-            ExecuteWithTimeLimit(TimeSpan.FromMilliseconds(100), () => base.EndGame(context));
+            ExecuteWithTimeLimit(TimeSpan.FromMilliseconds(50), () => base.EndGame(context));
         }
 
         private static bool ExecuteWithTimeLimit(TimeSpan timeSpan, Action codeBlock)

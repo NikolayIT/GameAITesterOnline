@@ -52,7 +52,11 @@ namespace OnlineGames.Workers.BattlesSimulator
                 Battle battle;
                 try
                 {
-                    battle = data.Battles.Where(x => !x.IsFinished).OrderBy(x => Guid.NewGuid()).FirstOrDefault();
+                    battle =
+                        data.Battles.Where(x => !x.IsFinished)
+                            .OrderBy(x => x.FirstTeam.CompetitionId) // Temporary, remove it.
+                            .ThenBy(x => Guid.NewGuid())
+                            .FirstOrDefault();
                 }
                 catch (Exception exception)
                 {

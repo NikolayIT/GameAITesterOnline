@@ -19,6 +19,7 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
     {
         public override IEnumerable<SingleGameResult> SimulateGames(Assembly firstAssembly, Assembly secondAssembly, int count)
         {
+            count = 100;
             var firstPlayer = new TexasHoldemPlayerDirector(this.LoadPlayer<IPlayer>(firstAssembly));
             var secondPlayer = new TexasHoldemPlayerDirector(this.LoadPlayer<IPlayer>(secondAssembly));
 
