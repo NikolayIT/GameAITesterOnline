@@ -33,3 +33,14 @@ hr {
     font-size: 20px;
     text-align: center;
 }
+
+.clip {
+    -moz-text-overflow: ellpsis;
+    text-overflow: ellipsis;
+}
+
+.overflow {
+    width: 20em;
+    white-space: nowrap;
+    overflow: hidden;
+}
