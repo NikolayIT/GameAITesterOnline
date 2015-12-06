@@ -99,7 +99,14 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
             }
             catch (AggregateException ae)
             {
-                throw ae.InnerExceptions[0];
+                if (ae.InnerExceptions != null && ae.InnerExceptions.Count > 0)
+                {
+                    throw ae.InnerExceptions[0];
+                }
+                else
+                {
+                    throw;
+                }
             }
         }
     }
