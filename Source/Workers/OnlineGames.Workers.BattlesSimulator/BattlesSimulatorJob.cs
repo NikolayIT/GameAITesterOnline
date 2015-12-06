@@ -85,15 +85,6 @@ namespace OnlineGames.Workers.BattlesSimulator
                         data.BattleGameResults.Remove(battleGameResult);
                     }
 
-                    data.SaveChanges();
-                }
-                catch (Exception exception)
-                {
-                    this.logger.ErrorFormat("Unable to clear game results to the battle №{0}! Exception: {1}", battle.Id, exception);
-                }
-
-                try
-                {
                     this.ProcessBattle(data, battle);
                     battle.IsFinished = true;
                 }

@@ -93,7 +93,7 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
             {
                 var task = Task.Factory.StartNew(codeBlock);
                 task.Wait(timeSpan);
-                // return task.IsCompleted;
+                //// return task.IsCompleted;
             }
             catch (AggregateException ae)
             {
