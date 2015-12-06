@@ -48,10 +48,8 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
             try
             {
                 PlayerAction playerAction = null;
-                var completed = ExecuteWithTimeLimit(
-                    TimeSpan.FromMilliseconds(50),
-                    () => playerAction = base.GetTurn(context));
-                if (completed)
+                ExecuteWithTimeLimit(TimeSpan.FromMilliseconds(50), () => playerAction = base.GetTurn(context));
+                if (playerAction != null)
                 {
                     return playerAction;
                 }
@@ -88,14 +86,14 @@ namespace OnlineGames.Workers.BattlesSimulator.GamesExecutors
             ExecuteWithTimeLimit(TimeSpan.FromMilliseconds(50), () => base.EndGame(context));
         }
 
-        private static bool ExecuteWithTimeLimit(TimeSpan timeSpan, Action codeBlock)
+        private static void ExecuteWithTimeLimit(TimeSpan timeSpan, Action codeBlock)
         {
             // TODO: memory limit?
             try
             {
                 var task = Task.Factory.StartNew(codeBlock);
                 task.Wait(timeSpan);
-                return task.IsCompleted;
+                // return task.IsCompleted;
             }
             catch (AggregateException ae)
             {
