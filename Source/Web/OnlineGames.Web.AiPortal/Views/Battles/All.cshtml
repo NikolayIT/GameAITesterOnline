@@ -7,36 +7,48 @@
 <h1>@ViewBag.Title (Total: @Model.Count(); Unfinished: @Model.Count(x => !x.IsFinished))</h1>
 @if (Model.Any())
 {
-    <table class="table table-hover table-condensed">
-        <tr>
-            <th>№</th>
-            <th>First team</th>
-            <th>First points</th>
-            <th>Second points</th>
-            <th>Second team</th>
-            <th>Comment</th>
-            <th>Finished</th>
-            <th>Last change <i class="glyphicon glyphicon-arrow-down"></i></th>
-        </tr>
-        @foreach (var battle in Model.OrderByDescending(x => x.ModifiedOn).ThenBy(x => x.FirstTeamName).ThenBy(x => x.SecondTeamName))
-        {
-            var rowClass = "";
-            if (!battle.IsFinished)
-            {
-                rowClass = "active";
-            }
-            <tr class="@rowClass">
-                <td>@battle.Id</td>
-                <td><a href="/Teams/Info/@battle.FirstTeamId">@battle.FirstTeamName</a></td>
-                <td>@battle.FirstTeamWins</td>
-                <td>@battle.SecondTeamWins</td>
-                <td><a href="/Teams/Info/@battle.SecondTeamId">@battle.SecondTeamName</a></td>
-                <td><a href="/Battles/Info/@battle.Id">@battle.Comment</a></td>
-                <td>@battle.IsFinished</td>
-                <td>@battle.ModifiedOn</td>
+    <div class="table-responsive">
+        <table class="table table-hover table-condensed">
+            <tr>
+                <th>№</th>
+                <th>First team</th>
+                <th>First points</th>
+                <th>Second points</th>
+                <th>Second team</th>
+                <th>Comment</th>
+                <th>Finished</th>
+                <th>Last change <i class="glyphicon glyphicon-arrow-down"></i></th>
             </tr>
-        }
-    </table>
+            @foreach (var battle in Model.OrderByDescending(x => x.ModifiedOn).ThenBy(x => x.FirstTeamName).ThenBy(x => x.SecondTeamName))
+                {
+                    var rowClass = "";
+                    var tdClassIsFinished = "";
+                    if (!battle.IsFinished)
+                    {
+                        rowClass = "active";
+                        tdClassIsFinished = "glyphicon glyphicon-remove text-danger";
+                    }
+                    else
+                    {
+                        tdClassIsFinished = "glyphicon glyphicon-ok text-success";
+                    }
+                    <tr class="@rowClass">
+                        <td>@battle.Id</td>
+                        <td><a href="/Teams/Info/@battle.FirstTeamId">@battle.FirstTeamName</a></td>
+                        <td class="text-center"><strong class="text-primary">@battle.FirstTeamWins</strong></td>
+                        <td class="text-center"><strong class="text-primary">@battle.SecondTeamWins</strong></td>
+                        <td><a href="/Teams/Info/@battle.SecondTeamId">@battle.SecondTeamName</a></td>
+                        <td role="gridcell" class="text-overflow">
+                            <a href="/Battles/Info/@battle.Id" class="text-overflow">
+                                <p class="overflow clip">@battle.Comment</p>
+                            </a>
+                        </td>
+                        <td class="text-center"><i class="@tdClassIsFinished"></i></td>
+                        <td>@battle.ModifiedOn</td>
+                    </tr>
+            }
+        </table>
+    </div>
 }
 else
 {
