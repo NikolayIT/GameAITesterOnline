@@ -11,12 +11,11 @@
         <table class="table table-hover table-condensed">
             <tr>
                 <th>№</th>
-                <th>First team</th>
-                <th>First points</th>
-                <th>Second points</th>
+                <th class="text-right">First team</th>
+                <th class="text-center">Result</th>
                 <th>Second team</th>
                 <th>Comment</th>
-                <th>Finished</th>
+                <th>Ready</th>
                 <th>Last change <i class="glyphicon glyphicon-arrow-down"></i></th>
             </tr>
             @foreach (var battle in Model.OrderByDescending(x => x.ModifiedOn).ThenBy(x => x.FirstTeamName).ThenBy(x => x.SecondTeamName))
@@ -34,9 +33,8 @@
                     }
                     <tr class="@rowClass">
                         <td>@battle.Id</td>
-                        <td><a href="/Teams/Info/@battle.FirstTeamId">@battle.FirstTeamName</a></td>
-                        <td class="text-center"><strong class="text-primary">@battle.FirstTeamWins</strong></td>
-                        <td class="text-center"><strong class="text-primary">@battle.SecondTeamWins</strong></td>
+                        <td class="text-right"><a href="/Teams/Info/@battle.FirstTeamId">@battle.FirstTeamName</a></td>
+                        <td class="text-center"><strong>@battle.FirstTeamWins - @battle.SecondTeamWins</strong></td>
                         <td><a href="/Teams/Info/@battle.SecondTeamId">@battle.SecondTeamName</a></td>
                         <td role="gridcell" class="text-overflow">
                             <a href="/Battles/Info/@battle.Id" class="text-overflow">
