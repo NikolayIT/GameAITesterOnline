@@ -9,6 +9,7 @@
 {
     <table class="table table-hover table-condensed">
         <tr>
+            <th>№</th>
             <th>First team</th>
             <th>First points</th>
             <th>Second points</th>
@@ -25,6 +26,7 @@
                 rowClass = "active";
             }
             <tr class="@rowClass">
+                <td>@battle.Id</td>
                 <td><a href="/Teams/Info/@battle.FirstTeamId">@battle.FirstTeamName</a></td>
                 <td>@battle.FirstTeamWins</td>
                 <td>@battle.SecondTeamWins</td>

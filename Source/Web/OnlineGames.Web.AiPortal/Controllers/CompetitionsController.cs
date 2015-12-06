@@ -41,12 +41,24 @@ namespace OnlineGames.Web.AiPortal.Controllers
         [HttpGet]
         public ActionResult Info(int id)
         {
-            var activeCompetitions =
+            var competition =
                 this.competitionsRepository.All()
                     .Where(x => x.IsActive && x.Id == id)
                     .ProjectTo<CompetitionViewModel>()
                     .FirstOrDefault();
-            return this.View(activeCompetitions);
+            if (competition == null)
+            {
+                return this.HttpNotFound("Competition not found!");
+            }
+
+            foreach (var team in competition.Teams)
+            {
+                team.UnfinishedBattles =
+                    this.battlesRepository.All()
+                        .Count(x => !x.IsFinished && (x.FirstTeamId == team.Id || x.SecondTeamId == team.Id));
+            }
+
+            return this.View(competition);
         }
 
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]

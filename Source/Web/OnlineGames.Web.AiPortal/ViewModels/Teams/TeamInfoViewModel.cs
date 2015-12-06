@@ -18,6 +18,8 @@ namespace OnlineGames.Web.AiPortal.ViewModels.Teams
 
         public int Points { get; set; }
 
+        public int UnfinishedBattles { get; set; }
+
         public IEnumerable<TeamMemberViewModel> TeamMembers { get; set; }
 
         public IEnumerable<UploadViewModel> Uploads { get; set; }
