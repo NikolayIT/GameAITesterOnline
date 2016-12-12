@@ -118,7 +118,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
                              {
                                  TeamId = team.Id,
                                  FileContents = validateFileResult.FileContent,
-                                 FileName = model.AiFile.FileName
+                                 FileName = model.AiFile.FileName,
                              };
             this.uploadRepository.Add(upload);
             this.uploadRepository.Save();
@@ -142,7 +142,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
                                 TeamMembers = x.Team.TeamMembers.Select(tm => tm.User.UserName),
                                 x.FileContents,
                                 x.CreatedOn,
-                                x.FileName
+                                x.FileName,
                             })
                     .FirstOrDefault();
             if (upload == null)

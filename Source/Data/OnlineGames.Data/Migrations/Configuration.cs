@@ -48,7 +48,7 @@ namespace OnlineGames.Data.Migrations
                         MinimumParticipants = 2,
                         MaximumParticipants = 3,
                         LibraryValidatorClassName = "OnlineGames.Services.AiPortal.Uploads.LibraryValidators.SantaseLibraryValidator",
-                        GamesExecutorClassName = "OnlineGames.Workers.BattlesSimulator.GamesExecutors.SantaseGamesExecutor"
+                        GamesExecutorClassName = "OnlineGames.Workers.BattlesSimulator.GamesExecutors.SantaseGamesExecutor",
                     });
             context.Competitions.Add(
                 new Competition
@@ -61,7 +61,7 @@ namespace OnlineGames.Data.Migrations
                         MinimumParticipants = 2,
                         MaximumParticipants = 3,
                         LibraryValidatorClassName = "OnlineGames.Services.AiPortal.Uploads.LibraryValidators.TexasHoldemLibraryValidator",
-                        GamesExecutorClassName = "OnlineGames.Workers.BattlesSimulator.GamesExecutors.TexasHoldemGamesExecutor"
+                        GamesExecutorClassName = "OnlineGames.Workers.BattlesSimulator.GamesExecutors.TexasHoldemGamesExecutor",
                 });
         }
     }

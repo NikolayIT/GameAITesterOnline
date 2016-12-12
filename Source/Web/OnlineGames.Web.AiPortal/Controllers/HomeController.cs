@@ -36,7 +36,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
                                 CurrentUserTeams =
                                     this.teamsRepository.All()
                                     .Where(x => x.TeamMembers.Any(tm => tm.User.UserName == this.User.Identity.Name))
-                                    .ProjectTo<TeamInfoViewModel>()
+                                    .ProjectTo<TeamInfoViewModel>(),
                             };
             return this.View(model);
         }

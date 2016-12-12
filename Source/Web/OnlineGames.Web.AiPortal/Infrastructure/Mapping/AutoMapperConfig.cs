@@ -32,7 +32,7 @@ namespace OnlineGames.Web.AiPortal.Infrastructure.Mapping
                         select new
                         {
                             Source = i.GetGenericArguments()[0],
-                            Destination = t
+                            Destination = t,
                         }).ToArray();
 
             foreach (var map in maps)

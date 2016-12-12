@@ -156,7 +156,7 @@ namespace OnlineGames.Workers.BattlesSimulator
                                                {
                                                    BattleId = battle.Id,
                                                    BattleGameWinner = gameResult.Winner,
-                                                   Report = gameResult.Report
+                                                   Report = gameResult.Report,
                                                };
                     battle.BattleGameResults.Add(battleGameResult);
                 }

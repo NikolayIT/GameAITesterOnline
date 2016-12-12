@@ -18,7 +18,7 @@ namespace OnlineGames.Workers.BattlesSimulator
             {
                 Account = ServiceAccount.LocalSystem,
                 Password = null,
-                Username = null
+                Username = null,
             };
 
             var serviceInstaller = new ServiceInstaller

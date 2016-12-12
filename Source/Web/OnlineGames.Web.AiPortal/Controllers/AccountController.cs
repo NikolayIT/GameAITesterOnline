@@ -61,7 +61,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
                              {
                                  UserName = remoteResult.UserName,
                                  AvatarUrl = remoteResult.SmallAvatarUrl,
-                                 Provider = UserProvider.TelerikAcademyUser
+                                 Provider = UserProvider.TelerikAcademyUser,
                              };
                 if (remoteResult.IsAdmin)
                 {
