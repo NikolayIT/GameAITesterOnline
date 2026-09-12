@@ -14,6 +14,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
     using OnlineGames.Data.Models;
     using OnlineGames.Web.AiPortal.ViewModels.Home;
     using OnlineGames.Web.AiPortal.ViewModels.Teams;
+    using OnlineGames.Web.AiPortal.Infrastructure.Mapping;
 
     public class HomeController : BaseController
     {
@@ -32,11 +33,11 @@ namespace OnlineGames.Web.AiPortal.Controllers
             var model = new IndexViewModel
                             {
                                 ActiveCompetitions =
-                                    this.competitionsRepository.All().Where(x => x.IsActive).ProjectTo<IndexCompetitionViewModel>(),
+                                    this.competitionsRepository.All().Where(x => x.IsActive).ProjectTo<IndexCompetitionViewModel>(AutoMapperConfig.Configuration),
                                 CurrentUserTeams =
                                     this.teamsRepository.All()
                                     .Where(x => x.TeamMembers.Any(tm => tm.User.UserName == this.User.Identity.Name))
-                                    .ProjectTo<TeamInfoViewModel>(),
+                                    .ProjectTo<TeamInfoViewModel>(AutoMapperConfig.Configuration),
                             };
             return this.View(model);
         }

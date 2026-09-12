@@ -28,7 +28,7 @@ results. It ran at https://ai.bgcoder.com from 2016 with two competitions:
 
 | Path | What it is |
 |---|---|
-| `src/OnlineGames.sln` | .NET Framework 4.6 solution |
+| `src/OnlineGames.sln` | .NET Framework 4.7.2 solution |
 | `src/Web/OnlineGames.Web.AiPortal` | ASP.NET MVC 5 site (OWIN + ASP.NET Identity, Telerik Academy OAuth login, Ninject, AutoMapper) |
 | `src/Services/OnlineGames.Services.AiPortal` | upload validation, sandbox, battle generation |
 | `src/Workers/OnlineGames.Workers.BattlesSimulator` | Windows service that runs the battles |
@@ -46,11 +46,9 @@ nuget restore src/OnlineGames.sln
 msbuild src/OnlineGames.sln /p:Configuration=Release
 ```
 
-The projects target .NET Framework 4.6, whose targeting pack no longer ships with Visual
-Studio. Either install it separately or point MSBuild at the reference assemblies from
-NuGet, as the GitHub Actions workflow in `.github/workflows/build.yml` does. Running the
-site needs a SQL Server database (`DefaultConnection` in `Web.config`) and Telerik Academy
-OAuth credentials, neither of which exists any more.
+The projects target .NET Framework 4.7.2; `.github/workflows/build.yml` runs the same two
+commands on every push. Running the site needs a SQL Server database (`DefaultConnection`
+in `Web.config`) and Telerik Academy OAuth credentials, neither of which exists any more.
 
 ## Static archive of ai.bgcoder.com
 

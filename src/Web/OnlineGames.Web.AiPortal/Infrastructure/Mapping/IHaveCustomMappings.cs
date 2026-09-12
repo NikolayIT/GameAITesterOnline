@@ -9,6 +9,6 @@ namespace OnlineGames.Web.AiPortal.Infrastructure.Mapping
 
     public interface IHaveCustomMappings
     {
-        void CreateMappings(IConfiguration configuration);
+        void CreateMappings(IProfileExpression configuration);
     }
 }

@@ -10,19 +10,34 @@ namespace OnlineGames.Web.AiPortal.Infrastructure.Mapping
     using System.Linq;
     using System.Reflection;
     using AutoMapper;
+    using Microsoft.Extensions.Logging.Abstractions;
 
     public class AutoMapperConfig
     {
+        /// <summary>
+        /// Gets the mapping configuration built by <see cref="Execute"/>; controllers pass it to ProjectTo.
+        /// </summary>
+        public static IConfigurationProvider Configuration { get; private set; }
+
+        public static IMapper Mapper { get; private set; }
+
         public void Execute()
         {
             var types = Assembly.GetExecutingAssembly().GetExportedTypes();
 
-            LoadStandardMappings(types);
+            var configuration = new MapperConfiguration(
+                cfg =>
+                {
+                    LoadStandardMappings(cfg, types);
+                    LoadCustomMappings(cfg, types);
+                },
+                NullLoggerFactory.Instance);
 
-            LoadCustomMappings(types);
+            Configuration = configuration;
+            Mapper = configuration.CreateMapper();
         }
 
-        private static void LoadStandardMappings(IEnumerable<Type> types)
+        private static void LoadStandardMappings(IMapperConfigurationExpression configuration, IEnumerable<Type> types)
         {
             var maps = (from t in types
                         from i in t.GetInterfaces()
@@ -37,11 +52,11 @@ namespace OnlineGames.Web.AiPortal.Infrastructure.Mapping
 
             foreach (var map in maps)
             {
-                Mapper.CreateMap(map.Source, map.Destination);
+                configuration.CreateMap(map.Source, map.Destination);
             }
         }
 
-        private static void LoadCustomMappings(IEnumerable<Type> types)
+        private static void LoadCustomMappings(IMapperConfigurationExpression configuration, IEnumerable<Type> types)
         {
             var maps = (from t in types
                         from i in t.GetInterfaces()
@@ -52,7 +67,7 @@ namespace OnlineGames.Web.AiPortal.Infrastructure.Mapping
 
             foreach (var map in maps)
             {
-                map.CreateMappings(Mapper.Configuration);
+                map.CreateMappings(configuration);
             }
         }
     }

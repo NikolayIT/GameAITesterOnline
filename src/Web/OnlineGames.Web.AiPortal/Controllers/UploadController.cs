@@ -19,6 +19,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
     using OnlineGames.Web.AiPortal.Infrastructure;
     using OnlineGames.Web.AiPortal.ViewModels.Teams;
     using OnlineGames.Web.AiPortal.ViewModels.Upload;
+    using OnlineGames.Web.AiPortal.Infrastructure.Mapping;
 
     [Authorize]
     public class UploadController : BaseController
@@ -56,7 +57,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
             var team =
                 this.teamsRepository.All()
                     .Where(x => x.Id == id && x.TeamMembers.Any(tm => tm.User.UserName == this.User.Identity.Name))
-                    .ProjectTo<TeamInfoViewModel>()
+                    .ProjectTo<TeamInfoViewModel>(AutoMapperConfig.Configuration)
                     .FirstOrDefault();
 
             if (team == null)
@@ -77,7 +78,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
                 this.teamsRepository.All()
                     .Where(
                         x => x.Id == model.Id && x.TeamMembers.Any(tm => tm.User.UserName == this.User.Identity.Name));
-            var team = teamQuery.ProjectTo<TeamInfoViewModel>().FirstOrDefault();
+            var team = teamQuery.ProjectTo<TeamInfoViewModel>(AutoMapperConfig.Configuration).FirstOrDefault();
 
             if (team == null)
             {

@@ -14,6 +14,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
     using OnlineGames.Data.Common;
     using OnlineGames.Data.Models;
     using OnlineGames.Web.AiPortal.ViewModels.Battles;
+    using OnlineGames.Web.AiPortal.Infrastructure.Mapping;
 
     public class BattlesController : Controller
     {
@@ -26,7 +27,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
 
         public ActionResult Info(int id)
         {
-            var model = this.battlesRepository.All().Where(x => x.Id == id).ProjectTo<BattleInfoViewModel>().FirstOrDefault();
+            var model = this.battlesRepository.All().Where(x => x.Id == id).ProjectTo<BattleInfoViewModel>(AutoMapperConfig.Configuration).FirstOrDefault();
             if (model == null)
             {
                 return this.HttpNotFound("Battle not found!");
@@ -47,7 +48,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
 
         public ActionResult All()
         {
-            var model = this.battlesRepository.All().ProjectTo<BattleSimpleInfoViewModel>().ToList();
+            var model = this.battlesRepository.All().ProjectTo<BattleSimpleInfoViewModel>(AutoMapperConfig.Configuration).ToList();
             return this.View(model);
         }
     }

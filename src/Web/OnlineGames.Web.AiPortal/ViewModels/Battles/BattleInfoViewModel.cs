@@ -29,7 +29,7 @@ namespace OnlineGames.Web.AiPortal.ViewModels.Battles
 
         public IEnumerable<BattleGameResultViewModel> BattleGameResults { get; set; }
 
-        public void CreateMappings(IConfiguration configuration)
+        public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Battle, BattleInfoViewModel>()
                 .ForMember(m => m.FirstTeamName, opt => opt.MapFrom(b => b.FirstTeam.Name))

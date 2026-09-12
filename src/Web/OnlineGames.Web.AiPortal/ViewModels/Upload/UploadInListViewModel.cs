@@ -26,7 +26,7 @@ namespace OnlineGames.Web.AiPortal.ViewModels.Upload
 
         public string TeamName { get; set; }
 
-        public void CreateMappings(IConfiguration configuration)
+        public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Upload, UploadInListViewModel>()
                 .ForMember(x => x.TeamName, opt => opt.MapFrom(x => x.Team.Name))

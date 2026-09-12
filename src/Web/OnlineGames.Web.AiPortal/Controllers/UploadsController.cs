@@ -13,6 +13,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
     using OnlineGames.Data.Common;
     using OnlineGames.Data.Models;
     using OnlineGames.Web.AiPortal.ViewModels.Upload;
+    using OnlineGames.Web.AiPortal.Infrastructure.Mapping;
 
     public class UploadsController : Controller
     {
@@ -25,7 +26,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
 
         public ActionResult All()
         {
-            var model = this.uploadsRepository.All().ProjectTo<UploadInListViewModel>().ToList();
+            var model = this.uploadsRepository.All().ProjectTo<UploadInListViewModel>(AutoMapperConfig.Configuration).ToList();
             return this.View(model);
         }
     }

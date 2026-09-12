@@ -15,6 +15,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
     using OnlineGames.Data.Models;
     using OnlineGames.Services.AiPortal.Battles;
     using OnlineGames.Web.AiPortal.ViewModels.Competitions;
+    using OnlineGames.Web.AiPortal.Infrastructure.Mapping;
 
     public class CompetitionsController : BaseController
     {
@@ -44,7 +45,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
             var competition =
                 this.competitionsRepository.All()
                     .Where(x => x.IsActive && x.Id == id)
-                    .ProjectTo<CompetitionViewModel>()
+                    .ProjectTo<CompetitionViewModel>(AutoMapperConfig.Configuration)
                     .FirstOrDefault();
             if (competition == null)
             {

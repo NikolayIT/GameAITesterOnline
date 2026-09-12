@@ -16,7 +16,7 @@ namespace OnlineGames.Web.AiPortal.ViewModels.Teams
 
         public string AvatarUrl { get; set; }
 
-        public void CreateMappings(IConfiguration configuration)
+        public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<TeamMember, TeamMemberViewModel>()
                 .ForMember(x => x.UserName, opt => opt.MapFrom(x => x.User.UserName))

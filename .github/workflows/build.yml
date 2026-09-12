@@ -18,10 +18,5 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore src/OnlineGames.sln
 
-      # The projects target .NET Framework 4.6, whose targeting pack is no longer shipped with
-      # Visual Studio. The reference assemblies come from NuGet instead.
-      - name: Get the .NET Framework 4.6 reference assemblies
-        run: nuget install Microsoft.NETFramework.ReferenceAssemblies.net46 -Version 1.0.3 -ExcludeVersion -OutputDirectory "$env:RUNNER_TEMP\refasm"
-
       - name: Build
-        run: msbuild src/OnlineGames.sln /m /v:m /p:Configuration=Release "/p:TargetFrameworkRootPath=$env:RUNNER_TEMP\refasm\Microsoft.NETFramework.ReferenceAssemblies.net46\build"
+        run: msbuild src/OnlineGames.sln /m /v:m /p:Configuration=Release

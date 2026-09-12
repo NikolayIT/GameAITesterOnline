@@ -35,7 +35,7 @@ namespace OnlineGames.Web.AiPortal.ViewModels.Battles
 
         public DateTime? ModifiedOn { get; set; }
 
-        public void CreateMappings(IConfiguration configuration)
+        public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Battle, BattleSimpleInfoViewModel>()
                 .ForMember(m => m.FirstTeamName, opt => opt.MapFrom(b => b.FirstTeam.Name))

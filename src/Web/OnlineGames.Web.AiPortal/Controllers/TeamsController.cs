@@ -15,6 +15,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
     using OnlineGames.Data.Models;
     using OnlineGames.Services.AiPortal.Battles;
     using OnlineGames.Web.AiPortal.ViewModels.Teams;
+    using OnlineGames.Web.AiPortal.Infrastructure.Mapping;
 
     public class TeamsController : BaseController
     {
@@ -116,7 +117,7 @@ namespace OnlineGames.Web.AiPortal.Controllers
         public ActionResult Info(int id)
         {
             var teamInfo =
-                this.teamsRepository.All().Where(x => x.Id == id).ProjectTo<TeamInfoViewModel>().FirstOrDefault();
+                this.teamsRepository.All().Where(x => x.Id == id).ProjectTo<TeamInfoViewModel>(AutoMapperConfig.Configuration).FirstOrDefault();
             if (teamInfo == null)
             {
                 return this.HttpNotFound("Team not found!");
