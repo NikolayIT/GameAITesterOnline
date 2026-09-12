@@ -16,10 +16,10 @@ namespace OnlineGames.Web.AiPortal.Controllers
     using OnlineGames.Data.Models;
     using OnlineGames.Services.AiPortal.Battles;
     using OnlineGames.Services.AiPortal.Uploads;
+    using OnlineGames.Web.AiPortal.Infrastructure.Mapping;
     using OnlineGames.Web.AiPortal.Infrastructure;
     using OnlineGames.Web.AiPortal.ViewModels.Teams;
     using OnlineGames.Web.AiPortal.ViewModels.Upload;
-    using OnlineGames.Web.AiPortal.Infrastructure.Mapping;
 
     [Authorize]
     public class UploadController : BaseController

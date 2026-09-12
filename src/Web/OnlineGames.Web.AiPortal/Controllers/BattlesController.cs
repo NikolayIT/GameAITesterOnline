@@ -13,8 +13,8 @@ namespace OnlineGames.Web.AiPortal.Controllers
     using OnlineGames.Common;
     using OnlineGames.Data.Common;
     using OnlineGames.Data.Models;
-    using OnlineGames.Web.AiPortal.ViewModels.Battles;
     using OnlineGames.Web.AiPortal.Infrastructure.Mapping;
+    using OnlineGames.Web.AiPortal.ViewModels.Battles;
 
     public class BattlesController : Controller
     {

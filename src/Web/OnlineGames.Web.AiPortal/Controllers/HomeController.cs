@@ -12,9 +12,9 @@ namespace OnlineGames.Web.AiPortal.Controllers
 
     using OnlineGames.Data.Common;
     using OnlineGames.Data.Models;
+    using OnlineGames.Web.AiPortal.Infrastructure.Mapping;
     using OnlineGames.Web.AiPortal.ViewModels.Home;
     using OnlineGames.Web.AiPortal.ViewModels.Teams;
-    using OnlineGames.Web.AiPortal.Infrastructure.Mapping;
 
     public class HomeController : BaseController
     {

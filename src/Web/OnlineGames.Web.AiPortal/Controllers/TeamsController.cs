@@ -14,8 +14,8 @@ namespace OnlineGames.Web.AiPortal.Controllers
     using OnlineGames.Data.Common;
     using OnlineGames.Data.Models;
     using OnlineGames.Services.AiPortal.Battles;
-    using OnlineGames.Web.AiPortal.ViewModels.Teams;
     using OnlineGames.Web.AiPortal.Infrastructure.Mapping;
+    using OnlineGames.Web.AiPortal.ViewModels.Teams;
 
     public class TeamsController : BaseController
     {
